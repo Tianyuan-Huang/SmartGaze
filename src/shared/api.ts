@@ -1,0 +1,1 @@
+export async function api(url:string,method='GET',body?:unknown){const r=await fetch(url,{method,credentials:'same-origin',headers:{'content-type':'application/json','x-prism-request':'1'},...(body===undefined?{}:{body:JSON.stringify(body)})});const result=await r.json();if(!r.ok)throw Object.assign(Error(result.message||'请求失败'),{status:r.status});return result}

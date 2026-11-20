@@ -1,0 +1,17 @@
+[Unit]
+Description=SmartGaze
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=smartgaze
+WorkingDirectory=/opt/smartgaze
+ExecStart=/usr/bin/node --env-file=.env scripts/start.mjs
+Restart=on-failure
+RestartSec=3
+KillMode=control-group
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,7139 @@
+{
+  "version": "7.0.0-text-graph-unified",
+  "scenes": {
+    "mobility": "城市步行",
+    "transit": "候车与换乘",
+    "shopping": "购物",
+    "dining": "用餐",
+    "home": "居家",
+    "work": "工作与学习",
+    "social": "社交",
+    "healthcare": "就医",
+    "exhibition": "展览",
+    "leisure": "休闲",
+    "indoor": "室内",
+    "unknown": "未确认"
+  },
+  "skills": [
+    {
+      "id": "route_blocker",
+      "label": "路径阻挡",
+      "scenes": [
+        "mobility",
+        "transit",
+        "indoor",
+        "shopping"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "挡路",
+        "堵住",
+        "占道",
+        "路障"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "移动与安全",
+      "value": "提前知道白杖触达前的通行阻挡",
+      "evidence_requirement": "阻挡物与通行方向同时可见",
+      "activate_when": "阻挡进入近前行进带",
+      "suppress_when": "远离路径或已播报且未变化",
+      "safety_boundary": "不宣称安全路线；仅陈述可见阻挡",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "必须关联当前行进带；远处物品不是挡路。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "overhead_hazard",
+      "label": "头部高度障碍",
+      "scenes": [
+        "mobility",
+        "transit",
+        "indoor",
+        "shopping"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "树枝低垂",
+        "头顶障碍",
+        "横杆",
+        "悬挂物"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "移动与安全",
+      "value": "补足白杖难以触达的头部风险",
+      "evidence_requirement": "低垂枝条、横杆或悬挂物清晰可见",
+      "activate_when": "位于用户可能经过的头肩高度",
+      "suppress_when": "明显不在行进方向",
+      "safety_boundary": "不估计碰撞时间",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "不能凭单目绝对高度断言会撞头；先说明可见障碍与不确定。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "level_change",
+      "label": "台阶与高差",
+      "scenes": [
+        "mobility",
+        "transit",
+        "indoor",
+        "shopping",
+        "home"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "台阶",
+        "楼梯",
+        "高差",
+        "下沉"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "移动与安全",
+      "value": "提前提示上/下台阶和地面高差",
+      "evidence_requirement": "台阶边缘与方向可见",
+      "activate_when": "高差位于近前行进方向",
+      "suppress_when": "高差很远或方向不相关",
+      "safety_boundary": "不保证台阶可安全通行",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "阶梯方向和位置需清晰；不把“有楼梯”当路线可通过。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "surface_condition",
+      "label": "地面状态",
+      "scenes": [
+        "mobility",
+        "transit",
+        "indoor",
+        "shopping",
+        "home"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "积水",
+        "坑洼",
+        "碎屑",
+        "湿地",
+        "地面杂物"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "移动与安全",
+      "value": "提示坑洼、积水、杂物等局部地面状态",
+      "evidence_requirement": "表面异常可见且位置明确",
+      "activate_when": "异常进入近前落脚区域",
+      "suppress_when": "普通材质或无行动影响",
+      "safety_boundary": "不凭反光断言湿滑",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "可见积水、破损不等于已测摩擦系数或深度。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "curb_crossing",
+      "label": "路缘与过街位置",
+      "scenes": [
+        "mobility",
+        "transit"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "斑马线",
+        "路缘",
+        "坡道",
+        "过街"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "移动与安全",
+      "value": "定位路缘坡道、斑马线与过街起点",
+      "evidence_requirement": "路缘、坡道或标线清晰可见",
+      "activate_when": "用户接近路口或明确过街",
+      "suppress_when": "仅远景且不影响当前行动",
+      "safety_boundary": "不单凭画面允许通行",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "路缘/斑马线定位不提供安全过街许可。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "pedestrian_signal",
+      "label": "行人信号",
+      "scenes": [
+        "mobility",
+        "transit"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "行人灯",
+        "绿人",
+        "红人",
+        "过街信号"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "移动与安全",
+      "value": "报告可见行人灯状态",
+      "evidence_requirement": "信号灯目标与状态清晰",
+      "activate_when": "用户在过街任务中",
+      "suppress_when": "信号不可辨或并非当前路口",
+      "safety_boundary": "不能替代定向行走判断；不从单帧推断倒计时",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "要确认适用于哪个过街方向、当前时效；绿灯不等于可以安全通过。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "moving_vehicle",
+      "label": "接近车辆与骑行者",
+      "scenes": [
+        "mobility",
+        "transit"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "车辆接近",
+        "自行车",
+        "电动车",
+        "摩托车"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "移动与安全",
+      "value": "提示进入共享空间的动态交通参与者",
+      "evidence_requirement": "连续帧支持运动或车辆占据近前路径",
+      "activate_when": "路径可能相交",
+      "suppress_when": "仅在机动车道且无路径关系",
+      "safety_boundary": "单帧只报位置，不报速度和碰撞时间",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "接近、速度与碰撞趋势需时序证据；静态图只支持车辆位置。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "route_landmark",
+      "label": "沿途地标",
+      "scenes": [
+        "mobility",
+        "transit",
+        "shopping",
+        "exhibition",
+        "leisure",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "地标",
+        "站亭",
+        "雕塑",
+        "醒目入口"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "移动与安全",
+      "value": "用稳定地标辅助定向与确认位置",
+      "evidence_requirement": "独特且稳定的入口、站亭或建筑线索",
+      "activate_when": "正在找路或确认位置",
+      "suppress_when": "地标泛化、重复或已错过",
+      "safety_boundary": "不把临时物体当永久地标",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "地标应稳定、可区分并关联实际路线；无名店口不可充作已确认目的地。",
+      "questions": [],
+      "needs": [
+        "NEED7-01"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "platform_edge",
+      "label": "站台边缘",
+      "scenes": [
+        "transit"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "站台边缘",
+        "安全线"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "交通与寻路",
+      "value": "提示站台安全线和落差边缘",
+      "evidence_requirement": "边缘或安全线清晰可见",
+      "activate_when": "接近站台边缘",
+      "suppress_when": "隔离墙完整且远离边缘",
+      "safety_boundary": "不判断列车是否即将到达",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "只报可确认的边缘；不以个人偏好关闭，也不保证全检出。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "boarding_gap",
+      "label": "上下车缝隙",
+      "scenes": [
+        "transit"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "车门缝隙",
+        "站台缝隙",
+        "上下车高差"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "交通与寻路",
+      "value": "提示车门与站台间可见缝隙或高差",
+      "evidence_requirement": "门、站台和缝隙同帧可见",
+      "activate_when": "正在上下车",
+      "suppress_when": "车门未到达或距离过远",
+      "safety_boundary": "不估计不可见深度",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "缝隙、高差只描述可见部分；不可保证能迈过去。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "station_identity",
+      "label": "车站与站点确认",
+      "scenes": [
+        "transit",
+        "mobility"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "站名",
+        "站点",
+        "车站",
+        "站台号"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "交通与寻路",
+      "value": "确认当前站点或站台",
+      "evidence_requirement": "现场标识文字可读",
+      "activate_when": "到站、候车或换乘",
+      "suppress_when": "文字模糊或来源是视频字幕",
+      "safety_boundary": "只读可核验名称",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "读出清晰站名并核对方向；不把任意数字当站名。",
+      "questions": [],
+      "needs": [
+        "NEED7-02"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "route_number",
+      "label": "线路与目的地",
+      "scenes": [
+        "transit",
+        "mobility"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "线路",
+        "路公交",
+        "终点站",
+        "开往"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "交通与寻路",
+      "value": "确认公交、列车线路和去向",
+      "evidence_requirement": "车体/站牌线路文字可读",
+      "activate_when": "寻找指定线路",
+      "suppress_when": "无明确线路任务且信息未变化",
+      "safety_boundary": "不由颜色猜线路",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "路线号、方向、车辆对应需核验；28 不同时证明终点。",
+      "questions": [],
+      "needs": [
+        "NEED7-03"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "departure_status",
+      "label": "班次与发车状态",
+      "scenes": [
+        "transit"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "发车",
+        "检票",
+        "晚点",
+        "班次",
+        "时刻"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "交通与寻路",
+      "value": "获得班次、检票或延误等时效信息",
+      "evidence_requirement": "电子屏或公告文字可读",
+      "activate_when": "候车、检票或换乘",
+      "suppress_when": "信息屏不可读或不是当前行程",
+      "safety_boundary": "不补造时刻与延误",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "必须同时有线路/车次、单位和时效；孤立 8 不能写 8 分钟。",
+      "questions": [],
+      "needs": [
+        "NEED7-04"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "boarding_door",
+      "label": "上下车门定位",
+      "scenes": [
+        "transit"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "车门",
+        "舱门",
+        "闸门",
+        "屏蔽门"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "交通与寻路",
+      "value": "定位可使用的车门或闸门",
+      "evidence_requirement": "门体与开闭状态可见",
+      "activate_when": "正在进站、登乘或下车",
+      "suppress_when": "门很远且无当前任务",
+      "safety_boundary": "不预测关门时间",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "只有上车目标确认后才提供对应车门，不推断已允许登车。",
+      "questions": [],
+      "needs": [
+        "NEED7-05"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "queue_position",
+      "label": "队列与轮次",
+      "scenes": [
+        "transit",
+        "shopping",
+        "healthcare",
+        "social",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "队尾",
+        "排队",
+        "叫号",
+        "轮次"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "交通与寻路",
+      "value": "找到队尾并判断轮到自己前的可见线索",
+      "evidence_requirement": "排队结构或叫号状态可见",
+      "activate_when": "用户正在排队",
+      "suppress_when": "人群并非队列或任务不明确",
+      "safety_boundary": "不根据外貌推断插队或意图",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "须确认是用户相关队伍及其尾部；人多或机器前没人都不够。",
+      "questions": [],
+      "needs": [
+        "NEED7-06"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "seat_availability",
+      "label": "座位可见占用",
+      "scenes": [
+        "transit",
+        "dining",
+        "healthcare",
+        "social",
+        "indoor",
+        "leisure"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "空座",
+        "座位",
+        "长椅",
+        "座椅"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "交通与寻路",
+      "value": "寻找可见空座与其位置",
+      "evidence_requirement": "座面和占用状态清晰",
+      "activate_when": "用户正在找座位或设置目标",
+      "suppress_when": "没有找座需求或占用不确定",
+      "safety_boundary": "物品占座时只报可见状态",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "先确认找座需要；无人不等于可用、允许坐或适合坐，必须说明限度。",
+      "questions": [],
+      "needs": [
+        "NEED7-07"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "product_identity",
+      "label": "商品识别",
+      "scenes": [
+        "shopping",
+        "home"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "商品",
+        "食品包装",
+        "饮料",
+        "日用品"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "购物与交易",
+      "value": "知道面前是什么商品",
+      "evidence_requirement": "包装外观或文字足以核验品类",
+      "activate_when": "浏览、寻找或拿取商品",
+      "suppress_when": "仅见通用包装无法识别",
+      "safety_boundary": "不猜品牌、功效或配方",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "包装文字优于图片猜成分；类别、品牌、商品名分别核验。",
+      "questions": [
+        "SGPE7-005",
+        "SGPE7-008",
+        "SGPE7-018"
+      ],
+      "needs": [],
+      "features": {
+        "product_value": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "product_variant",
+      "label": "规格与口味",
+      "scenes": [
+        "shopping",
+        "home"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "规格",
+        "口味",
+        "型号",
+        "容量"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "购物与交易",
+      "value": "区分相似商品的规格、口味或型号",
+      "evidence_requirement": "包装上的差异字段可读",
+      "activate_when": "比较同类商品",
+      "suppress_when": "差异不可读或只凭颜色猜测",
+      "safety_boundary": "只报可见/可读属性",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "只读包装清晰标注的规格/口味，不从颜色推口味。",
+      "questions": [
+        "SGPE7-001",
+        "SGPE7-002",
+        "SGPE7-006",
+        "SGPE7-007",
+        "SGPE7-017"
+      ],
+      "needs": [],
+      "features": {
+        "state_detail": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "shelf_location",
+      "label": "货架位置",
+      "scenes": [
+        "shopping"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "上层货架",
+        "中层货架",
+        "下层货架",
+        "货架左侧",
+        "货架右侧"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "购物与交易",
+      "value": "定位目标在上中下层和左右方向",
+      "evidence_requirement": "商品与货架相对位置清晰",
+      "activate_when": "寻找或拿取商品",
+      "suppress_when": "目标身份未确认",
+      "safety_boundary": "不估计不可核验距离",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "定位必须已有目标对应；实际取物时位置是任务信息，不和身份打擂台。",
+      "questions": [],
+      "needs": [
+        "NEED7-08"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "exact_price",
+      "label": "明确价格",
+      "scenes": [
+        "shopping",
+        "dining"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "价格",
+        "元",
+        "¥",
+        "价签"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "购物与交易",
+      "value": "在商品身份明确后读取对应价格",
+      "evidence_requirement": "商品与具体数字价签关联明确",
+      "activate_when": "用户比较或询价",
+      "suppress_when": "只有“价格标签”但无数字/归属",
+      "safety_boundary": "不把促销色当促销事实",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "商品匹配、币种、计价单位须一起清楚；本次已明确问价格则优先回答，不走偏好。",
+      "questions": [
+        "SGPE7-001",
+        "SGPE7-002",
+        "SGPE7-003",
+        "SGPE7-004",
+        "SGPE7-007",
+        "SGPE7-011"
+      ],
+      "needs": [],
+      "features": {
+        "product_value": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "stock_availability",
+      "label": "货位可见占用",
+      "scenes": [
+        "shopping"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "缺货",
+        "空货位",
+        "剩余",
+        "有货"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "购物与交易",
+      "value": "知道目标货位是否有货或有几个可见选择",
+      "evidence_requirement": "货位与目标关联清楚",
+      "activate_when": "寻找特定商品",
+      "suppress_when": "只是普通空隙且目标不明",
+      "safety_boundary": "不推断仓库库存",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "改称“货位可见占用”，不声称库存；货架空隙不能证明缺货。",
+      "questions": [],
+      "needs": [
+        "NEED7-09"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "comparison_alternative",
+      "label": "可比较替代项",
+      "scenes": [
+        "shopping",
+        "dining"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "另一种",
+        "同类",
+        "可比较",
+        "替代"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "购物与交易",
+      "value": "发现同类可选商品以支持比较",
+      "evidence_requirement": "两个同类商品均可核验",
+      "activate_when": "用户正在比较",
+      "suppress_when": "替代项类别或关联不清",
+      "safety_boundary": "不替用户下价值判断",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "需用户尚在比较，提供确实存在且用途相关的另一项，不编推荐。",
+      "questions": [
+        "SGPE7-003",
+        "SGPE7-011"
+      ],
+      "needs": [],
+      "features": {
+        "alternative_options": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "checkout_direction",
+      "label": "结账位置与状态",
+      "scenes": [
+        "shopping",
+        "dining"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "收银台",
+        "结账",
+        "自助结账",
+        "开放窗口"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "购物与交易",
+      "value": "找到收银台、自助结账或开放窗口",
+      "evidence_requirement": "标识/柜台和开放状态可见",
+      "activate_when": "准备结账",
+      "suppress_when": "收银状态不清或任务无关",
+      "safety_boundary": "不自动支付",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "需结账意图及清晰结账标识；普通箭头不能等同出口。",
+      "questions": [],
+      "needs": [
+        "NEED7-10"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "receipt_payment",
+      "label": "票据与支付界面",
+      "scenes": [
+        "shopping",
+        "dining",
+        "transit",
+        "healthcare"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "小票",
+        "支付成功",
+        "金额",
+        "找零",
+        "票据"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "购物与交易",
+      "value": "读取可见金额、票据或支付完成状态",
+      "evidence_requirement": "屏幕或票据文字清晰且用户授权",
+      "activate_when": "支付/核对交易",
+      "suppress_when": "敏感字段暴露或文字不清",
+      "safety_boundary": "默认遮蔽账号、证件号和二维码",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "改称“票据与支付界面”，出纸不代表支付成功；需要可核验的交易状态字样。",
+      "questions": [],
+      "needs": [
+        "NEED7-11"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "cooking_hazard",
+      "label": "烹饪热源风险",
+      "scenes": [
+        "dining",
+        "home"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "火焰",
+        "沸腾",
+        "热源",
+        "锅溢出"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "饮食与厨房",
+      "value": "提示可见火焰、沸腾溢出或开启热源",
+      "evidence_requirement": "热源状态清晰可见",
+      "activate_when": "用户正在近距离操作",
+      "suppress_when": "无法由视觉确认温度",
+      "safety_boundary": "不把蒸汽等同危险温度",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "活动热源不参与偏好降权；视觉未发现不代表无烫伤风险。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "spill_breakage",
+      "label": "洒落与破碎物",
+      "scenes": [
+        "dining",
+        "home",
+        "shopping",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "洒落",
+        "碎玻璃",
+        "破碎",
+        "水渍"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "饮食与厨房",
+      "value": "提示近前液体洒落或碎片",
+      "evidence_requirement": "洒落/碎片与位置清晰",
+      "activate_when": "位于操作或行进区域",
+      "suppress_when": "普通水迹无法确认或很远",
+      "safety_boundary": "不凭反光推断液体",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "可见洒落/碎片且与用户活动有关时先处理，不能当可舍弃装饰。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "food_identity",
+      "label": "食物种类",
+      "scenes": [
+        "dining",
+        "home",
+        "shopping"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "米饭",
+        "蔬菜",
+        "肉块",
+        "面条",
+        "食物"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "饮食与厨房",
+      "value": "知道盘中或台面上有哪些可见食物",
+      "evidence_requirement": "食物外观足以描述或包装文字可读",
+      "activate_when": "用餐、取餐或备餐",
+      "suppress_when": "身份不确定且描述会误导",
+      "safety_boundary": "不推断营养、熟度和过敏原",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "不凭菜色判断肉类品种、过敏原、熟度和可食用性。",
+      "questions": [
+        "SGPE7-010",
+        "SGPE7-012"
+      ],
+      "needs": [],
+      "features": {
+        "state_detail": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "plate_layout",
+      "label": "餐盘分布",
+      "scenes": [
+        "dining",
+        "home"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "盘中",
+        "餐盘左侧",
+        "餐盘右侧",
+        "餐盘上方"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "饮食与厨房",
+      "value": "说明不同食物在盘中的相对位置",
+      "evidence_requirement": "盘面和分区清晰",
+      "activate_when": "正在进餐或摆盘",
+      "suppress_when": "盘面被遮挡或无需定位",
+      "safety_boundary": "不使用虚假钟点方位",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "以清楚的画面坐标或已确认佩戴方向描述；不能把图右直接保证为用户身体右。",
+      "questions": [
+        "SGPE7-009",
+        "SGPE7-014",
+        "SGPE7-023"
+      ],
+      "needs": [],
+      "features": {
+        "spatial_layout": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "tableware_location",
+      "label": "餐具与杯碗位置",
+      "scenes": [
+        "dining",
+        "home"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "筷子",
+        "杯子",
+        "碗",
+        "餐具",
+        "纸巾"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "饮食与厨房",
+      "value": "定位杯、碗、筷子等可拿取物",
+      "evidence_requirement": "器具及相对位置清晰",
+      "activate_when": "准备进餐或收拾",
+      "suppress_when": "不在触及范围或任务无关",
+      "safety_boundary": "不判断是否洁净",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "与同一餐盘建立相对方位；正在伸手找杯子时转入当前请求，不再参与竞争。",
+      "questions": [
+        "SGPE7-009",
+        "SGPE7-010",
+        "SGPE7-023"
+      ],
+      "needs": [],
+      "features": {
+        "spatial_layout": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "menu_item",
+      "label": "菜单与可选菜品",
+      "scenes": [
+        "dining",
+        "shopping"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "菜单",
+        "菜名",
+        "套餐",
+        "饮品单"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "饮食与厨房",
+      "value": "读取菜单中的菜名与价格以支持选择",
+      "evidence_requirement": "菜单文字可读",
+      "activate_when": "点餐或比较菜品",
+      "suppress_when": "菜单过远或文字不清",
+      "safety_boundary": "不补造售罄和配料",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "菜单图片不是配方或过敏原标签；选择编号不保证菜品名称。",
+      "questions": [],
+      "needs": [
+        "NEED7-12"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "cooking_control",
+      "label": "厨具控制与档位",
+      "scenes": [
+        "home",
+        "dining"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "灶台按钮",
+        "旋钮",
+        "档位",
+        "电磁炉"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "饮食与厨房",
+      "value": "定位旋钮、按钮及可见档位",
+      "evidence_requirement": "控制面板和状态清晰",
+      "activate_when": "用户明确操作设备",
+      "suppress_when": "设备型号/功能不确定",
+      "safety_boundary": "不指导危险操作",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "档位、开关须清晰，重要关火操作不接受低偏好压制。",
+      "questions": [],
+      "needs": [
+        "NEED7-13"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "printed_safety_label",
+      "label": "印刷安全标签",
+      "scenes": [
+        "shopping",
+        "dining",
+        "home",
+        "healthcare"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "配料表",
+        "过敏原",
+        "保质期",
+        "生产日期",
+        "药名",
+        "用量",
+        "药品标签"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "饮食与厨房",
+      "value": "读取食品配料/日期或药品包装上的明确印刷字段",
+      "evidence_requirement": "文字清晰且对应当前食品或药品",
+      "activate_when": "用户主动关注配料、日期、药名或用量字段",
+      "suppress_when": "文字不清或仅凭外观推断",
+      "safety_boundary": "只读印刷信息，不作医学判断；用药仍须核对专业来源",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "safety",
+      "audit": "新增保护：相关安全/药品标签不参与减权；药片图标 2 不能解释成每次两片。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "protected"
+      ]
+    },
+    {
+      "id": "personal_item",
+      "label": "个人物品定位",
+      "scenes": [
+        "home",
+        "work",
+        "social",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "钥匙",
+        "钱包",
+        "眼镜",
+        "白杖",
+        "个人物品"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "家居与个人",
+      "value": "寻找钥匙、钱包、眼镜等个人物品",
+      "evidence_requirement": "目标已由用户指定且可见",
+      "activate_when": "明确寻物目标",
+      "suppress_when": "所有权或身份不确定",
+      "safety_boundary": "不把相似物品认作用户物品",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "存在不代表所有权；先确认要找的对象，不推断归属或虚构身份。",
+      "questions": [],
+      "needs": [
+        "NEED7-14"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "container_contents",
+      "label": "容器与收纳内容",
+      "scenes": [
+        "home",
+        "shopping",
+        "work"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "抽屉",
+        "箱子",
+        "包内",
+        "容器内"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "家居与个人",
+      "value": "了解抽屉、箱包或容器内可见物",
+      "evidence_requirement": "容器敞开且内容可见",
+      "activate_when": "用户在整理或寻找",
+      "suppress_when": "容器关闭或内容被遮挡",
+      "safety_boundary": "不宣称完整清单",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "只列容器中实际可见内容，不补全被遮挡处。",
+      "questions": [
+        "SGPE7-015",
+        "SGPE7-016",
+        "SGPE7-020",
+        "SGPE7-027",
+        "SGPE7-032"
+      ],
+      "needs": [],
+      "features": {
+        "state_detail": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "appliance_state",
+      "label": "家电可见状态",
+      "scenes": [
+        "home",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "洗衣机",
+        "扫地机",
+        "洗碗机",
+        "指示灯"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "家居与个人",
+      "value": "确认设备开关、门体或指示灯状态",
+      "evidence_requirement": "状态指示或机械位置可见",
+      "activate_when": "正在操作或离家检查",
+      "suppress_when": "状态无法由画面确认",
+      "safety_boundary": "不由外观推断电气安全",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "灯亮只能报灯亮，除非模式字样或可靠设备接口明确；不猜已关机。",
+      "questions": [],
+      "needs": [
+        "NEED7-15"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "clothing_appearance",
+      "label": "衣物颜色与图案",
+      "scenes": [
+        "home",
+        "shopping",
+        "social"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "衣服颜色",
+        "条纹",
+        "格纹",
+        "图案"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "家居与个人",
+      "value": "区分衣物外观以支持挑选",
+      "evidence_requirement": "颜色/图案在当前光照下可辨",
+      "activate_when": "穿搭、购物或整理",
+      "suppress_when": "强色偏或光照不足",
+      "safety_boundary": "颜色结果注明视觉条件限制",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "颜色与款式有真实需求价值，但不从模糊全景判断污渍、尺码和面料。",
+      "questions": [
+        "SGPE7-004",
+        "SGPE7-017",
+        "SGPE7-020"
+      ],
+      "needs": [],
+      "features": {
+        "aesthetic_detail": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "clothing_matching",
+      "label": "穿搭组合",
+      "scenes": [
+        "home",
+        "shopping",
+        "social"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "搭配",
+        "配套",
+        "同色",
+        "鞋子"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "家居与个人",
+      "value": "描述当前衣物组合及可选搭配",
+      "evidence_requirement": "衣物均可见且用户请求搭配",
+      "activate_when": "准备穿衣或选购",
+      "suppress_when": "默认不评价审美或身体",
+      "safety_boundary": "建议必须可撤销且不作社会规范判断",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "disabled",
+      "audit": "当前缺少经过检验的穿搭评估与用户标准；鞋成对摆放不构成穿搭证据。暂不接自由排序。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "disabled"
+      ]
+    },
+    {
+      "id": "cleaning_state",
+      "label": "整洁与待清理处",
+      "scenes": [
+        "home",
+        "work",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "污渍",
+        "散落",
+        "待清理",
+        "凌乱"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "家居与个人",
+      "value": "定位明显污渍、散落或待整理区域",
+      "evidence_requirement": "状态明显并与任务相关",
+      "activate_when": "用户正在清洁或检查",
+      "suppress_when": "轻微外观差异或任务无关",
+      "safety_boundary": "不把生活状态作价值判断",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "需用户清洁/检查意图；不能把空/遮挡衣篮说成待洗衣物。",
+      "questions": [],
+      "needs": [
+        "NEED7-16"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "storage_organization",
+      "label": "收纳分类",
+      "scenes": [
+        "home",
+        "work",
+        "shopping"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "收纳",
+        "分类",
+        "归位",
+        "抽屉分区"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "家居与个人",
+      "value": "说明物品分区和归位位置",
+      "evidence_requirement": "分区与物品关系清晰",
+      "activate_when": "整理或寻找物品",
+      "suppress_when": "布局不稳定或不可见",
+      "safety_boundary": "不推断所有权",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "说明实际分区关系，不能用抽象“很整齐”作判断或替用户指定归位。",
+      "questions": [
+        "SGPE7-006",
+        "SGPE7-015",
+        "SGPE7-016",
+        "SGPE7-018",
+        "SGPE7-027"
+      ],
+      "needs": [],
+      "features": {
+        "spatial_layout": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "edge_extension_review": "挑选收纳盒时了解内部格局；文字情境覆盖，不是视觉验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "delivery_mail",
+      "label": "包裹与信件",
+      "scenes": [
+        "home",
+        "work",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "包裹",
+        "快递",
+        "信件",
+        "邮件"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "家居与个人",
+      "value": "提示门口包裹或信箱内可见物",
+      "evidence_requirement": "包裹/信件位置可见",
+      "activate_when": "回家、出门或明确关注",
+      "suppress_when": "已播报且未变化",
+      "safety_boundary": "默认不朗读敏感地址",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "只报相关可见包裹及位置，默认不读第三方地址；阻挡通路转安全。",
+      "questions": [],
+      "needs": [
+        "NEED7-17"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "document_type",
+      "label": "文档类型与结构",
+      "scenes": [
+        "work",
+        "healthcare",
+        "home",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "表格",
+        "文档",
+        "信件",
+        "合同",
+        "票据"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "文字与工作",
+      "value": "先说明表格、信件、票据等结构",
+      "evidence_requirement": "页面整体清晰",
+      "activate_when": "用户准备阅读或填写",
+      "suppress_when": "页面严重裁切",
+      "safety_boundary": "不把证件内容公开播报",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "结构概览与正文读取分开；存在一叠纸不是文字内容。",
+      "questions": [
+        "SGPE7-021",
+        "SGPE7-025",
+        "SGPE7-028",
+        "SGPE7-029",
+        "SGPE7-052",
+        "SGPE7-053",
+        "SGPE7-054"
+      ],
+      "needs": [],
+      "features": {
+        "state_detail": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "document_text",
+      "label": "文档正文",
+      "scenes": [
+        "work",
+        "healthcare",
+        "home",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "正文",
+        "段落",
+        "文档内容"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "文字与工作",
+      "value": "读取用户指定的正文内容",
+      "evidence_requirement": "OCR 文字清晰且用户授权",
+      "activate_when": "用户主动阅读",
+      "suppress_when": "大段文字未经请求或含敏感信息",
+      "safety_boundary": "长文进入交互通道，不在主动推送中全文朗读",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "必须可读且用户授权；不能把正文排版当正文语义。",
+      "questions": [],
+      "needs": [
+        "NEED7-18"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "form_field",
+      "label": "表单字段定位",
+      "scenes": [
+        "work",
+        "healthcare",
+        "indoor",
+        "home"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "填写栏",
+        "签名处",
+        "勾选框",
+        "表单字段"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "文字与工作",
+      "value": "定位待填字段、签名处或勾选框",
+      "evidence_requirement": "表单结构与字段可见",
+      "activate_when": "用户正在填写",
+      "suppress_when": "字段含敏感值且未授权",
+      "safety_boundary": "不代填或提交",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "仅在初读空表时可调介绍顺序；已经开始定位/填写字段则必须回答。",
+      "questions": [
+        "SGPE7-021",
+        "SGPE7-025",
+        "SGPE7-029",
+        "SGPE7-052"
+      ],
+      "needs": [],
+      "features": {
+        "task_focus": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "edge_extension_review": "家中初读空白表格；文字情境覆盖，不是视觉验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "handwriting",
+      "label": "手写内容",
+      "scenes": [
+        "work",
+        "home",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "手写",
+        "白板笔记",
+        "便签"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "文字与工作",
+      "value": "读取可辨手写笔记",
+      "evidence_requirement": "字迹与页面清晰",
+      "activate_when": "用户主动请求",
+      "suppress_when": "字迹模糊或歧义大",
+      "safety_boundary": "低置信度必须说明",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "手写存在不等于可读；模糊时拒绝补字，不借图表内容填空。",
+      "questions": [],
+      "needs": [
+        "NEED7-19"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "board_presentation",
+      "label": "演示与白板重点",
+      "scenes": [
+        "work",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "投影",
+        "白板",
+        "幻灯片",
+        "讲义"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "文字与工作",
+      "value": "概括投影或白板当前主题与变化",
+      "evidence_requirement": "画面内容清晰",
+      "activate_when": "上课、会议或听讲",
+      "suppress_when": "内容未变化或过小",
+      "safety_boundary": "不替用户推断讲者意图",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "讲解当前相关内容，不凭人脸推断讲者意图；静态模糊标题不够。",
+      "questions": [],
+      "needs": [
+        "NEED7-20"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "chart_diagram",
+      "label": "图表与图示",
+      "scenes": [
+        "work",
+        "exhibition",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "柱状图",
+        "折线图",
+        "流程图",
+        "图示"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "文字与工作",
+      "value": "描述图表类型、趋势和明确标注",
+      "evidence_requirement": "坐标/图例/数据可辨",
+      "activate_when": "用户明确查看图表",
+      "suppress_when": "无法读取刻度或数据",
+      "safety_boundary": "区分观察与解释",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "能说形状不代表能读轴和数值；不可从柱高猜百分比或统计结论。",
+      "questions": [],
+      "needs": [
+        "NEED7-21"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "screen_control",
+      "label": "屏幕控件定位",
+      "scenes": [
+        "work",
+        "home",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "按钮",
+        "控件",
+        "停止",
+        "录制",
+        "菜单"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "文字与工作",
+      "value": "定位屏幕上的主要按钮和当前焦点",
+      "evidence_requirement": "控件文字/图标清晰",
+      "activate_when": "用户正在操作设备",
+      "suppress_when": "屏幕含敏感通知或任务不明",
+      "safety_boundary": "不自动点击或提交",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "只在了解界面/检查设备时可调先后；直接问停止按钮时应答，不自动点击。",
+      "questions": [
+        "SGPE7-019",
+        "SGPE7-024",
+        "SGPE7-026",
+        "SGPE7-030"
+      ],
+      "needs": [],
+      "features": {
+        "action_focus": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "status_time",
+      "label": "状态指示与时间",
+      "scenes": [
+        "work",
+        "home",
+        "transit",
+        "healthcare",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "电量",
+        "进度",
+        "时间",
+        "时钟",
+        "状态灯"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "文字与工作",
+      "value": "读取电量、进度、叫号或时钟等状态",
+      "evidence_requirement": "数字/图标可辨且来源明确",
+      "activate_when": "状态会影响当前任务",
+      "suppress_when": "泛化状态或未变化",
+      "safety_boundary": "不把生成图中文字当真实数据",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "状态需字段语义和单位；叫号/低电警告转任务/安全路径，2h15m 不猜续航。",
+      "questions": [
+        "SGPE7-019",
+        "SGPE7-024",
+        "SGPE7-026",
+        "SGPE7-030",
+        "SGPE7-053",
+        "SGPE7-054"
+      ],
+      "needs": [],
+      "features": {
+        "state_detail": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "private_content",
+      "label": "敏感内容保护",
+      "scenes": [
+        "social",
+        "healthcare",
+        "work",
+        "home",
+        "shopping"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "证件",
+        "银行卡",
+        "处方",
+        "私人屏幕",
+        "二维码"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 12.0,
+      "family": "社交与服务",
+      "value": "在播报/上传前提示证件、药品标签或私人屏幕",
+      "evidence_requirement": "敏感区域可见或用户将要共享",
+      "activate_when": "可能外放、记录或上传",
+      "suppress_when": "用户明确授权且已最小化",
+      "safety_boundary": "保护优先于个性化；默认不外放具体值",
+      "protected": true,
+      "preference_adjustable": false,
+      "role": "privacy",
+      "audit": "这是阻止泄露的约束，不是“优先大声念出隐私”的播报 Skill；只在授权方式下最小化。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "privacy_gate"
+      ]
+    },
+    {
+      "id": "person_presence",
+      "label": "人员出现与接近",
+      "scenes": [
+        "social",
+        "transit",
+        "shopping",
+        "healthcare",
+        "work",
+        "leisure",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "有人",
+        "行人",
+        "顾客",
+        "乘客",
+        "工作人员"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "社交与服务",
+      "value": "知道附近是否有人及相对方位",
+      "evidence_requirement": "人形与相对位置可见",
+      "activate_when": "社交、服务或通行相关",
+      "suppress_when": "无任务关系或已稳定存在",
+      "safety_boundary": "不推断身份、性别、年龄和意图",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "只描述与当前任务相关的可见人及方位；不推断身份或帮助意愿。",
+      "questions": [],
+      "needs": [
+        "NEED7-22"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "known_person",
+      "label": "已授权熟人识别",
+      "scenes": [
+        "social",
+        "home",
+        "work",
+        "leisure"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "熟人",
+        "认识的人",
+        "家人",
+        "同事"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "社交与服务",
+      "value": "在用户主动录入和同意下提示熟人",
+      "evidence_requirement": "本机已授权特征且连续帧确认",
+      "activate_when": "用户开启熟人功能",
+      "suppress_when": "不满足阈值或未授权",
+      "safety_boundary": "不保存原始人脸；绝不识别陌生人身份",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "disabled",
+      "audit": "无授权身份模块及复核证据，默认禁用；题干写“已授权”也不能造出小李。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "disabled"
+      ]
+    },
+    {
+      "id": "group_layout",
+      "label": "人群与小组布局",
+      "scenes": [
+        "social",
+        "work",
+        "exhibition",
+        "leisure",
+        "healthcare",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "围成半圈",
+        "小组",
+        "人群布局",
+        "空位"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "社交与服务",
+      "value": "说明小组站位、空位和互动中心",
+      "evidence_requirement": "多人和相对布局清晰",
+      "activate_when": "加入活动或寻找位置",
+      "suppress_when": "拥挤但结构不清",
+      "safety_boundary": "不推断关系和归属",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "需加入小组/了解站位意图；遮挡人数用不确定表达，不推断谁是一伙的。",
+      "questions": [],
+      "needs": [
+        "NEED7-23"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "gesture_pointing",
+      "label": "手势与指向",
+      "scenes": [
+        "social",
+        "work",
+        "exhibition",
+        "shopping",
+        "healthcare"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "举手",
+        "挥手",
+        "指向",
+        "手势"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "社交与服务",
+      "value": "提示举手、挥手或指向等可见动作",
+      "evidence_requirement": "手势与方向清晰",
+      "activate_when": "对话、课堂或服务场景",
+      "suppress_when": "动作歧义或与用户无关",
+      "safety_boundary": "不把姿态解释成情绪",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "区分可见姿势和动作/意图；必须确认与用户有关，不抢着讲无关旁人。",
+      "questions": [],
+      "needs": [
+        "NEED7-24"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "conversation_turn",
+      "label": "对话轮次线索",
+      "scenes": [
+        "social",
+        "work",
+        "healthcare",
+        "leisure"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "轮到",
+        "发言",
+        "面向用户",
+        "对话线索"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "社交与服务",
+      "value": "提示明显面向、举手或停顿等参与线索",
+      "evidence_requirement": "多帧/音频或明确可见轮次线索",
+      "activate_when": "用户正在参与对话",
+      "suppress_when": "仅单帧面部方向不可靠",
+      "safety_boundary": "不宣称对方正在看用户",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "temporal",
+      "audit": "单帧禁用发言者结论；需要授权时序/音频模块和明确轮次证据，当前离线不实现。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "unavailable_temporal"
+      ]
+    },
+    {
+      "id": "service_role",
+      "label": "服务点与可见角色",
+      "scenes": [
+        "shopping",
+        "transit",
+        "healthcare",
+        "exhibition",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "服务台",
+        "工作人员",
+        "咨询台",
+        "信息台"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "社交与服务",
+      "value": "定位有明确标牌/制服的服务台人员",
+      "evidence_requirement": "服务台、工牌或制服线索可见",
+      "activate_when": "用户寻找现场帮助",
+      "suppress_when": "仅凭外貌推断职业",
+      "safety_boundary": "只报可见角色线索，不保证愿意帮助",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "服务台标识可支持定位；制服/外貌不保证职业，更不能保证对方愿意帮忙。",
+      "questions": [],
+      "needs": [
+        "NEED7-25"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "handoff_object",
+      "label": "递交与接取物品",
+      "scenes": [
+        "social",
+        "shopping",
+        "healthcare",
+        "work"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "递给",
+        "接取",
+        "交还",
+        "递来"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "社交与服务",
+      "value": "提示对方递来的文件、票据或物品方位",
+      "evidence_requirement": "递交动作和物品可见",
+      "activate_when": "近距离交换物品",
+      "suppress_when": "动作归属不清",
+      "safety_boundary": "不推断物品内容",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "必须确认递交对象是用户；给另一位患者的文件不能当用户任务。",
+      "questions": [],
+      "needs": [
+        "NEED7-26"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "scene_overview",
+      "label": "场景概览",
+      "scenes": [
+        "mobility",
+        "transit",
+        "shopping",
+        "dining",
+        "home",
+        "work",
+        "social",
+        "healthcare",
+        "exhibition",
+        "leisure",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "场景概览",
+        "这里是",
+        "整体"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "探索与文化",
+      "value": "首次进入场景时建立简短心智地图",
+      "evidence_requirement": "主要区域与活动可见",
+      "activate_when": "进入新场景或用户请求概览",
+      "suppress_when": "场景未变化或更具体 Skill 已足够",
+      "safety_boundary": "概览不得淹没近前风险",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "初到陌生处或用户要求概览；反复报背景是噪音，不能掩盖具体任务。",
+      "questions": [
+        "SGPE7-031",
+        "SGPE7-035",
+        "SGPE7-041",
+        "SGPE7-043",
+        "SGPE7-045",
+        "SGPE7-047",
+        "SGPE7-049",
+        "SGPE7-051"
+      ],
+      "needs": [],
+      "features": {
+        "facility_interest": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "requested_object",
+      "label": "指定目标寻找",
+      "scenes": [
+        "mobility",
+        "transit",
+        "shopping",
+        "dining",
+        "home",
+        "work",
+        "social",
+        "healthcare",
+        "exhibition",
+        "leisure",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "寻找",
+        "目标物",
+        "找到",
+        "没找到"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "探索与文化",
+      "value": "只追踪用户明确指定的目标",
+      "evidence_requirement": "目标特征与当前位置可见",
+      "activate_when": "寻物目标处于活动状态",
+      "suppress_when": "目标未出现或识别不确定",
+      "safety_boundary": "未找到时保持诚实，不生成目标",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "显式请求是约束不是兴趣投票；只提升与实际目标核验匹配的事实。",
+      "questions": [],
+      "needs": [
+        "NEED7-27"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "pointed_object",
+      "label": "指向目标",
+      "scenes": [
+        "shopping",
+        "dining",
+        "home",
+        "work",
+        "exhibition",
+        "healthcare",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "手指指向",
+        "指着",
+        "指尖"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "探索与文化",
+      "value": "识别用户手指指向的物体或文字区域",
+      "evidence_requirement": "手指尖与目标关系清晰",
+      "activate_when": "用户正在指认或询问",
+      "suppress_when": "指向歧义或目标遮挡",
+      "safety_boundary": "有歧义时要求确认",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "task",
+      "audit": "指尖与物体对应不唯一则确认，不把靠近价签当指向某盒食品。",
+      "questions": [],
+      "needs": [
+        "NEED7-28"
+      ],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "need",
+        "goal"
+      ]
+    },
+    {
+      "id": "spatial_layout",
+      "label": "空间关系",
+      "scenes": [
+        "mobility",
+        "transit",
+        "shopping",
+        "dining",
+        "home",
+        "work",
+        "social",
+        "healthcare",
+        "exhibition",
+        "leisure",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "左侧",
+        "右侧",
+        "前方",
+        "通道",
+        "入口"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "探索与文化",
+      "value": "说明入口、通道、柜台和物体相对位置",
+      "evidence_requirement": "相对方位可见",
+      "activate_when": "定向、找物或建立布局",
+      "suppress_when": "泛泛罗列无行动关系",
+      "safety_boundary": "不估计未测量距离",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "建立用户想了解的局部布局；正在避障/找入口时转任务路径，不重复泛泛左右。",
+      "questions": [
+        "SGPE7-005",
+        "SGPE7-013",
+        "SGPE7-022",
+        "SGPE7-028",
+        "SGPE7-035",
+        "SGPE7-037",
+        "SGPE7-040",
+        "SGPE7-044",
+        "SGPE7-046",
+        "SGPE7-048",
+        "SGPE7-050",
+        "SGPE7-051"
+      ],
+      "needs": [],
+      "features": {
+        "spatial_layout": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "meaningful_change",
+      "label": "重要变化门控",
+      "scenes": [
+        "mobility",
+        "transit",
+        "shopping",
+        "dining",
+        "home",
+        "work",
+        "social",
+        "healthcare",
+        "exhibition",
+        "leisure",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "变为",
+        "出现",
+        "离开",
+        "打开",
+        "关闭"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "探索与文化",
+      "value": "只在状态发生有意义变化时再次播报",
+      "evidence_requirement": "当前帧与最近事实可比较",
+      "activate_when": "变化影响风险、任务或目标",
+      "suppress_when": "外观抖动或语义未变",
+      "safety_boundary": "变化检测失败时不声称连续追踪",
+      "protected": false,
+      "preference_adjustable": false,
+      "role": "temporal",
+      "audit": "改为时序门控，不当普通竞争项；合成左右拼图不算持续检测证据。",
+      "questions": [],
+      "needs": [],
+      "features": {},
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "unavailable_temporal"
+      ]
+    },
+    {
+      "id": "artwork_exhibit",
+      "label": "艺术品与展品",
+      "scenes": [
+        "exhibition",
+        "leisure",
+        "indoor"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "展品",
+        "雕塑",
+        "画作",
+        "艺术品"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "探索与文化",
+      "value": "提供作品外观、构图和展签可见信息",
+      "evidence_requirement": "展品与相关展签可见",
+      "activate_when": "参观或用户主动关注",
+      "suppress_when": "匆忙移动或安全信息更优先",
+      "safety_boundary": "不猜作者、年代与文化含义",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "文化审美并非无用；参观意图确认后描述可见构图，不猜作者年代寓意。",
+      "questions": [
+        "SGPE7-033",
+        "SGPE7-034",
+        "SGPE7-036",
+        "SGPE7-038",
+        "SGPE7-042"
+      ],
+      "needs": [],
+      "features": {
+        "state_detail": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "animal_nature",
+      "label": "动物与自然景观",
+      "scenes": [
+        "leisure",
+        "mobility",
+        "exhibition"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "动物",
+        "狗",
+        "猫",
+        "树木",
+        "花",
+        "河面",
+        "景观"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "探索与文化",
+      "value": "描述可见动物、植物、水体和景观",
+      "evidence_requirement": "目标与相对位置可见",
+      "activate_when": "游览或动物接近",
+      "suppress_when": "普通背景且无用户兴趣",
+      "safety_boundary": "不判断动物温顺、水深或天气风险",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "用户游览兴趣时可选；动物逼近等潜在风险另走保护，不保证动物温顺。",
+      "questions": [
+        "SGPE7-037",
+        "SGPE7-039",
+        "SGPE7-040",
+        "SGPE7-048"
+      ],
+      "needs": [],
+      "features": {
+        "state_detail": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    },
+    {
+      "id": "visual_style",
+      "label": "外观与审美细节",
+      "scenes": [
+        "mobility",
+        "shopping",
+        "dining",
+        "home",
+        "social",
+        "exhibition",
+        "leisure",
+        "indoor",
+        "work",
+        "transit"
+      ],
+      "activities": [],
+      "topics": [],
+      "terms": [
+        "颜色",
+        "材质",
+        "装饰",
+        "风格",
+        "灯光"
+      ],
+      "max_chars": 64,
+      "cooldown_s": 24.0,
+      "family": "探索与文化",
+      "value": "在用户偏好允许时补充颜色、材质与装饰",
+      "evidence_requirement": "外观属性在当前光照下可辨",
+      "activate_when": "休闲探索、穿搭或用户明确偏好",
+      "suppress_when": "正在移动、信息预算紧或无任务价值",
+      "safety_boundary": "主观评价必须标明并默认关闭",
+      "protected": false,
+      "preference_adjustable": true,
+      "role": "optional",
+      "audit": "颜色/表面/构图可有非功利价值；由用户决定，不因失明就默认不需要审美。",
+      "questions": [
+        "SGPE7-008",
+        "SGPE7-012",
+        "SGPE7-013",
+        "SGPE7-014",
+        "SGPE7-022",
+        "SGPE7-031",
+        "SGPE7-032",
+        "SGPE7-033",
+        "SGPE7-034",
+        "SGPE7-036",
+        "SGPE7-038",
+        "SGPE7-039",
+        "SGPE7-041",
+        "SGPE7-042",
+        "SGPE7-043",
+        "SGPE7-044",
+        "SGPE7-045",
+        "SGPE7-046",
+        "SGPE7-047",
+        "SGPE7-049",
+        "SGPE7-050"
+      ],
+      "needs": [],
+      "features": {
+        "aesthetic_detail": 1
+      },
+      "runtime": "文字事实／规则已实现；感知能力未由本题库验证",
+      "edge_extension_review": "坐定熟悉工作空间或候车休息时的自愿外观介绍；文字情境覆盖，不是视觉验证",
+      "channels": [
+        "pair",
+        "direction",
+        "goal"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "SGPE7-001",
+      "kind": "pair",
+      "scene": "shopping",
+      "activity": "review",
+      "prompt": "你在超市挑选一盒原味燕麦片，还没有决定购买。关于这盒商品，你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "exact_price",
+          "text": "这盒原味燕麦片标价18.90元。",
+          "value": "估计购买支出",
+          "features": {
+            "product_value": 1
+          },
+          "fact_id": "SGPE7-001-A"
+        },
+        "B": {
+          "skill": "product_variant",
+          "text": "这盒原味燕麦片净含量500克。",
+          "value": "判断份量是否合适",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-001-B"
+        }
+      },
+      "comparison": "A用于估计购买支出；B用于判断份量是否合适。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-002",
+      "kind": "pair",
+      "scene": "shopping",
+      "activity": "review",
+      "prompt": "你在便利店挑选一瓶橙汁，还没有决定买哪瓶。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "product_variant",
+          "text": "这瓶橙汁容量300毫升。",
+          "value": "判断携带与饮用份量",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-002-A"
+        },
+        "B": {
+          "skill": "exact_price",
+          "text": "这瓶橙汁标价6元。",
+          "value": "判断购买支出",
+          "features": {
+            "product_value": 1
+          },
+          "fact_id": "SGPE7-002-B"
+        }
+      },
+      "comparison": "A用于判断携带与饮用份量；B用于判断购买支出。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-003",
+      "kind": "pair",
+      "scene": "shopping",
+      "activity": "review",
+      "prompt": "你正在挑选洗衣液，手边是一瓶2升装产品。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "exact_price",
+          "text": "这瓶2升洗衣液标价29元。",
+          "value": "了解这件商品的价格",
+          "features": {
+            "product_value": 1
+          },
+          "fact_id": "SGPE7-003-A"
+        },
+        "B": {
+          "skill": "comparison_alternative",
+          "text": "旁边还有同品牌的1升装洗衣液。",
+          "value": "了解可选的小容量版本",
+          "features": {
+            "alternative_options": 1
+          },
+          "fact_id": "SGPE7-003-B"
+        }
+      },
+      "comparison": "A用于了解这件商品的价格；B用于了解可选的小容量版本。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-004",
+      "kind": "pair",
+      "scene": "shopping",
+      "activity": "review",
+      "prompt": "你在服装店挑选一件已经拿到手边的衬衫，还在考虑是否购买。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "clothing_appearance",
+          "text": "这件衬衫是蓝白竖条纹。",
+          "value": "了解外观是否符合喜好",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-004-A"
+        },
+        "B": {
+          "skill": "exact_price",
+          "text": "这件衬衫标价129元。",
+          "value": "了解这件衣物的支出",
+          "features": {
+            "product_value": 1
+          },
+          "fact_id": "SGPE7-004-B"
+        }
+      },
+      "comparison": "A用于了解外观是否符合喜好；B用于了解这件衣物的支出。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-005",
+      "kind": "pair",
+      "scene": "shopping",
+      "activity": "review",
+      "prompt": "你在超市慢慢浏览早餐食品区，目前没有指定要买的商品。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "product_identity",
+          "text": "面前摆着原味燕麦片和玉米片。",
+          "value": "了解可选商品品类",
+          "features": {
+            "product_value": 1
+          },
+          "fact_id": "SGPE7-005-A"
+        },
+        "B": {
+          "skill": "spatial_layout",
+          "text": "这一排左半边放谷物食品，右半边放面包。",
+          "value": "建立分区位置印象",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-005-B"
+        }
+      },
+      "comparison": "A用于了解可选商品品类；B用于建立分区位置印象。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-006",
+      "kind": "pair",
+      "scene": "shopping",
+      "activity": "review",
+      "prompt": "你在家居店了解一个打开的收纳盒，还没有决定是否购买。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "storage_organization",
+          "text": "盒内分成三个等宽的小格。",
+          "value": "判断分区是否适合收纳",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-006-A"
+        },
+        "B": {
+          "skill": "product_variant",
+          "text": "盒身标注长30厘米、宽20厘米。",
+          "value": "判断尺寸是否适合存放位置",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-006-B"
+        }
+      },
+      "comparison": "A用于判断分区是否适合收纳；B用于判断尺寸是否适合存放位置。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-007",
+      "kind": "pair",
+      "scene": "shopping",
+      "activity": "review",
+      "prompt": "你在挑选一袋饼干，已经知道它是200克装。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "product_variant",
+          "text": "包装写着芝麻口味。",
+          "value": "了解明确标注的口味，不推断过敏原",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-007-A"
+        },
+        "B": {
+          "skill": "exact_price",
+          "text": "这袋饼干标价8.50元。",
+          "value": "了解价格",
+          "features": {
+            "product_value": 1
+          },
+          "fact_id": "SGPE7-007-B"
+        }
+      },
+      "comparison": "A用于了解明确标注的口味，不推断过敏原；B用于了解价格。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-008",
+      "kind": "pair",
+      "scene": "shopping",
+      "activity": "review",
+      "prompt": "你在商店初次了解一个展示着餐具的柜台，不急着购买。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "product_identity",
+          "text": "台面上展示着瓷碗和玻璃杯。",
+          "value": "了解可选物品种类",
+          "features": {
+            "product_value": 1
+          },
+          "fact_id": "SGPE7-008-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "展示餐具使用蓝白相间的花纹。",
+          "value": "了解装饰风格",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-008-B"
+        }
+      },
+      "comparison": "A用于了解可选物品种类；B用于了解装饰风格。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-009",
+      "kind": "pair",
+      "scene": "dining",
+      "activity": "review",
+      "prompt": "你已坐在餐桌前，准备开始吃饭，还没有伸手取物。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "plate_layout",
+          "text": "米饭在餐盘左半边，青菜在右半边。",
+          "value": "了解食物分布",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-009-A"
+        },
+        "B": {
+          "skill": "tableware_location",
+          "text": "筷子在餐盘右侧，水杯在餐盘上方。",
+          "value": "了解餐具位置",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-009-B"
+        }
+      },
+      "comparison": "A用于了解食物分布；B用于了解餐具位置。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-010",
+      "kind": "pair",
+      "scene": "dining",
+      "activity": "review",
+      "prompt": "你坐在餐桌前，想先了解刚端来的汤碗和周围餐具。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "food_identity",
+          "text": "碗里可以看见面条和青菜。",
+          "value": "了解可见食物，不推断配方",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-010-A"
+        },
+        "B": {
+          "skill": "tableware_location",
+          "text": "汤勺放在碗的右侧，纸巾在左侧。",
+          "value": "了解配套餐具位置",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-010-B"
+        }
+      },
+      "comparison": "A用于了解可见食物，不推断配方；B用于了解配套餐具位置。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-011",
+      "kind": "pair",
+      "scene": "dining",
+      "activity": "review",
+      "prompt": "你正在慢慢挑选一份菜单上写明的番茄鸡蛋面，还没下单。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "exact_price",
+          "text": "这份番茄鸡蛋面标价18元。",
+          "value": "了解支出",
+          "features": {
+            "product_value": 1
+          },
+          "fact_id": "SGPE7-011-A"
+        },
+        "B": {
+          "skill": "comparison_alternative",
+          "text": "菜单还列有同类的番茄鸡蛋拌面。",
+          "value": "了解同类选择",
+          "features": {
+            "alternative_options": 1
+          },
+          "fact_id": "SGPE7-011-B"
+        }
+      },
+      "comparison": "A用于了解支出；B用于了解同类选择。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-012",
+      "kind": "pair",
+      "scene": "dining",
+      "activity": "review",
+      "prompt": "你已坐好，正在了解面前装有几样点心的盘子。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "food_identity",
+          "text": "盘里有饼干和切块蛋糕。",
+          "value": "了解食物种类",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-012-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "点心分别做成圆形和方形，表面有花纹。",
+          "value": "了解点心外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-012-B"
+        }
+      },
+      "comparison": "A用于了解食物种类；B用于了解点心外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-013",
+      "kind": "pair",
+      "scene": "dining",
+      "activity": "review",
+      "prompt": "你已坐在一家初次来的茶馆，暂时不点单，想了解周围环境。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "spatial_layout",
+          "text": "茶桌靠窗，展示茶具的柜子在桌子左侧。",
+          "value": "建立局部空间印象",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-013-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "茶桌有深色木纹，桌面摆着白色花瓶。",
+          "value": "了解环境外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-013-B"
+        }
+      },
+      "comparison": "A用于建立局部空间印象；B用于了解环境外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-014",
+      "kind": "pair",
+      "scene": "dining",
+      "activity": "review",
+      "prompt": "你正了解一盘水果，已经知道里面有苹果块和橙瓣。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "plate_layout",
+          "text": "苹果块在盘子左侧，橙瓣在右侧。",
+          "value": "定位已知水果",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-014-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "苹果块带红色果皮，橙瓣呈橙黄色。",
+          "value": "了解可见外观，不判断新鲜程度",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-014-B"
+        }
+      },
+      "comparison": "A用于定位已知水果；B用于了解可见外观，不判断新鲜程度。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-015",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你坐在家中整理一个打开的抽屉，还没有指定要找哪件东西。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "container_contents",
+          "text": "抽屉里能看见胶带、剪刀和便签纸。",
+          "value": "了解可见物品清单",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-015-A"
+        },
+        "B": {
+          "skill": "storage_organization",
+          "text": "抽屉分成左右两个小格和后方一个长格。",
+          "value": "了解可用的收纳结构",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-015-B"
+        }
+      },
+      "comparison": "A用于了解可见物品清单；B用于了解可用的收纳结构。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-016",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你正在整理一个打开的针线盒，想先了解盒内情况。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "container_contents",
+          "text": "盒里能看见线轴、纽扣和卷尺。",
+          "value": "了解可见内容",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-016-A"
+        },
+        "B": {
+          "skill": "storage_organization",
+          "text": "盒内上层有四个小格，下层是一个大格。",
+          "value": "了解层次和分区",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-016-B"
+        }
+      },
+      "comparison": "A用于了解可见内容；B用于了解层次和分区。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-017",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你在家里挑选一件衬衫，已经知道它的尺码。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "clothing_appearance",
+          "text": "这件衬衫是绿色细格纹。",
+          "value": "了解颜色图案",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-017-A"
+        },
+        "B": {
+          "skill": "product_variant",
+          "text": "衣领标签写着纯棉。",
+          "value": "了解标签明确标注的材料",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-017-B"
+        }
+      },
+      "comparison": "A用于了解颜色图案；B用于了解标签明确标注的材料。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-018",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你在家中整理食品柜里的几瓶调味品，没有指定要找哪一瓶。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "product_identity",
+          "text": "这一层能看见生抽和米醋。",
+          "value": "了解品类",
+          "features": {
+            "product_value": 1
+          },
+          "fact_id": "SGPE7-018-A"
+        },
+        "B": {
+          "skill": "storage_organization",
+          "text": "瓶子放在左边，袋装调料放在右边。",
+          "value": "了解收纳分区",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-018-B"
+        }
+      },
+      "comparison": "A用于了解品类；B用于了解收纳分区。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-019",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你正在初次了解一个录音软件的界面，尚未开始录音。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "screen_control",
+          "text": "开始录音按钮位于界面下方中央。",
+          "value": "了解主要控件位置",
+          "features": {
+            "action_focus": 1
+          },
+          "fact_id": "SGPE7-019-A"
+        },
+        "B": {
+          "skill": "status_time",
+          "text": "界面显示剩余存储空间12吉字节。",
+          "value": "了解明确标注的设备资源",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-019-B"
+        }
+      },
+      "comparison": "A用于了解主要控件位置；B用于了解明确标注的设备资源。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-020",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你正在整理一只打开的旅行箱，暂时没有找某件物品。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "container_contents",
+          "text": "箱里能看见外套、毛巾和收纳袋。",
+          "value": "了解可见内容",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-020-A"
+        },
+        "B": {
+          "skill": "clothing_appearance",
+          "text": "可见的外套是灰色，带有黑色条纹。",
+          "value": "辨别衣物外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-020-B"
+        }
+      },
+      "comparison": "A用于了解可见内容；B用于辨别衣物外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-021",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你坐在家中初次查看一张尚未填写的活动报名表，暂时不填。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "document_type",
+          "text": "这张表分成个人信息和活动选择两部分。",
+          "value": "了解文档结构",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-021-A"
+        },
+        "B": {
+          "skill": "form_field",
+          "text": "表上有联系电话栏和参加日期栏。",
+          "value": "了解需要准备的字段",
+          "features": {
+            "task_focus": 1
+          },
+          "fact_id": "SGPE7-021-B"
+        }
+      },
+      "comparison": "A用于了解文档结构；B用于了解需要准备的字段。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-022",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你在家中了解刚布置好的书桌，不急着寻找物品。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "spatial_layout",
+          "text": "台灯在桌面左侧，笔筒在右侧。",
+          "value": "建立物品位置印象",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-022-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "桌垫是深蓝色，笔筒印着白色波点。",
+          "value": "了解布置外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-022-B"
+        }
+      },
+      "comparison": "A用于建立物品位置印象；B用于了解布置外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-023",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你坐在家中准备吃一盘点心，尚未开始取食。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "plate_layout",
+          "text": "饼干在盘子上半边，蛋糕在下半边。",
+          "value": "定位食物",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-023-A"
+        },
+        "B": {
+          "skill": "tableware_location",
+          "text": "小叉在盘子右侧，杯子在上方。",
+          "value": "定位餐具",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-023-B"
+        }
+      },
+      "comparison": "A用于定位食物；B用于定位餐具。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-024",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你在家中初次查看播放器界面，暂时不执行某个操作。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "screen_control",
+          "text": "暂停按钮在下方中央，音量按钮在右侧。",
+          "value": "了解控件布局",
+          "features": {
+            "action_focus": 1
+          },
+          "fact_id": "SGPE7-024-A"
+        },
+        "B": {
+          "skill": "status_time",
+          "text": "这段音频总时长20分钟，当前播放到第3分钟。",
+          "value": "了解明确的播放进度",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-024-B"
+        }
+      },
+      "comparison": "A用于了解控件布局；B用于了解明确的播放进度。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-025",
+      "kind": "pair",
+      "scene": "work",
+      "activity": "review",
+      "prompt": "你坐在办公桌前，初次了解一张空白报销表，还没开始填写。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "document_type",
+          "text": "表格分为费用明细和审批签字两部分。",
+          "value": "了解整体结构",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-025-A"
+        },
+        "B": {
+          "skill": "form_field",
+          "text": "费用明细中有日期栏和金额栏。",
+          "value": "了解所需字段",
+          "features": {
+            "task_focus": 1
+          },
+          "fact_id": "SGPE7-025-B"
+        }
+      },
+      "comparison": "A用于了解整体结构；B用于了解所需字段。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-026",
+      "kind": "pair",
+      "scene": "work",
+      "activity": "review",
+      "prompt": "你正在熟悉投屏软件的界面，会议还没有开始。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "screen_control",
+          "text": "选择窗口按钮在左侧，开始共享按钮在下方。",
+          "value": "了解操作入口",
+          "features": {
+            "action_focus": 1
+          },
+          "fact_id": "SGPE7-026-A"
+        },
+        "B": {
+          "skill": "status_time",
+          "text": "状态栏显示当前尚未共享屏幕。",
+          "value": "了解当前状态",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-026-B"
+        }
+      },
+      "comparison": "A用于了解操作入口；B用于了解当前状态。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-027",
+      "kind": "pair",
+      "scene": "work",
+      "activity": "review",
+      "prompt": "你坐在办公桌前整理一个打开的文具盒，没有指定寻物目标。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "container_contents",
+          "text": "文具盒内能看见铅笔、橡皮和直尺。",
+          "value": "了解可见物品",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-027-A"
+        },
+        "B": {
+          "skill": "storage_organization",
+          "text": "文具盒左侧是长格，右侧是两个短格。",
+          "value": "了解物品分区",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-027-B"
+        }
+      },
+      "comparison": "A用于了解可见物品；B用于了解物品分区。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-028",
+      "kind": "pair",
+      "scene": "work",
+      "activity": "review",
+      "prompt": "你正在整理桌面资料，还未决定先读哪份。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "document_type",
+          "text": "桌上有一份会议议程和一张空白签到表。",
+          "value": "区分资料类型",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-028-A"
+        },
+        "B": {
+          "skill": "spatial_layout",
+          "text": "资料叠在桌面左侧，笔记本放在右侧。",
+          "value": "了解桌面位置",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-028-B"
+        }
+      },
+      "comparison": "A用于区分资料类型；B用于了解桌面位置。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-029",
+      "kind": "pair",
+      "scene": "work",
+      "activity": "review",
+      "prompt": "你准备了解一张空白设备借用表，暂时不填写。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "form_field",
+          "text": "表上有设备名称栏和归还日期栏。",
+          "value": "了解所需信息",
+          "features": {
+            "task_focus": 1
+          },
+          "fact_id": "SGPE7-029-A"
+        },
+        "B": {
+          "skill": "document_type",
+          "text": "表格上方是借用登记，下方是归还确认。",
+          "value": "了解流程分段",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-029-B"
+        }
+      },
+      "comparison": "A用于了解所需信息；B用于了解流程分段。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-030",
+      "kind": "pair",
+      "scene": "work",
+      "activity": "review",
+      "prompt": "你坐定后正在熟悉演示软件，还没开始放映。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "status_time",
+          "text": "当前文件共有12页幻灯片。",
+          "value": "了解文档规模",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-030-A"
+        },
+        "B": {
+          "skill": "screen_control",
+          "text": "从头放映按钮位于工具栏右侧。",
+          "value": "了解操作入口",
+          "features": {
+            "action_focus": 1
+          },
+          "fact_id": "SGPE7-030-B"
+        }
+      },
+      "comparison": "A用于了解文档规模；B用于了解操作入口。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-031",
+      "kind": "pair",
+      "scene": "work",
+      "activity": "review",
+      "prompt": "你刚进入一个已布置好的小型会议室，坐下后想了解房间。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "scene_overview",
+          "text": "这里有会议桌区和靠墙的茶水区。",
+          "value": "了解区域用途",
+          "features": {
+            "facility_interest": 1
+          },
+          "fact_id": "SGPE7-031-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "会议桌是浅木色，墙面挂着蓝色几何图案。",
+          "value": "了解空间外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-031-B"
+        }
+      },
+      "comparison": "A用于了解区域用途；B用于了解空间外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-032",
+      "kind": "pair",
+      "scene": "work",
+      "activity": "review",
+      "prompt": "你在工作室整理一只打开的材料盒，没有指定要取哪件物品。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "container_contents",
+          "text": "盒内能看见彩纸、布片和木棒。",
+          "value": "了解材料种类",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-032-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "可见彩纸有红、黄两色，布片带格纹。",
+          "value": "了解可选外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-032-B"
+        }
+      },
+      "comparison": "A用于了解材料种类；B用于了解可选外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-033",
+      "kind": "pair",
+      "scene": "exhibition",
+      "activity": "review",
+      "prompt": "你停在一件人物雕塑前，想慢慢了解作品。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "artwork_exhibit",
+          "text": "雕像中的人物坐着，双手放在膝上。",
+          "value": "了解作品姿态",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-033-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "雕像表面呈深褐色，带有细小凹点。",
+          "value": "了解表面外观，不断言材料",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-033-B"
+        }
+      },
+      "comparison": "A用于了解作品姿态；B用于了解表面外观，不断言材料。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-034",
+      "kind": "pair",
+      "scene": "exhibition",
+      "activity": "review",
+      "prompt": "你停在一幅画前，想了解画面，还没有指定要听哪个部分。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "artwork_exhibit",
+          "text": "画面里一条小船靠在河岸边。",
+          "value": "了解描绘内容",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-034-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "画面主要使用蓝色和灰色，笔触较粗。",
+          "value": "了解视觉表现",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-034-B"
+        }
+      },
+      "comparison": "A用于了解描绘内容；B用于了解视觉表现。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-035",
+      "kind": "pair",
+      "scene": "exhibition",
+      "activity": "review",
+      "prompt": "你坐在展厅休息处，想了解这个展厅的布置。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "scene_overview",
+          "text": "展厅分为器物制作和日常使用两个主题区。",
+          "value": "了解展览主题划分",
+          "features": {
+            "facility_interest": 1
+          },
+          "fact_id": "SGPE7-035-A"
+        },
+        "B": {
+          "skill": "spatial_layout",
+          "text": "展柜围绕中央展墙排成半圆，入口在半圆开口处。",
+          "value": "了解展厅空间组织",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-035-B"
+        }
+      },
+      "comparison": "A用于了解展览主题划分；B用于了解展厅空间组织。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-036",
+      "kind": "pair",
+      "scene": "exhibition",
+      "activity": "review",
+      "prompt": "你在一件鸟形展品前停下，准备听介绍。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "artwork_exhibit",
+          "text": "这件鸟形展品展开双翼，头朝左侧。",
+          "value": "了解形态",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-036-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "展品两翼有红蓝相间的条纹。",
+          "value": "了解颜色图案",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-036-B"
+        }
+      },
+      "comparison": "A用于了解形态；B用于了解颜色图案。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-037",
+      "kind": "pair",
+      "scene": "exhibition",
+      "activity": "review",
+      "prompt": "你正在了解一个自然主题展柜，尚未指定观察对象。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "animal_nature",
+          "text": "展柜里展示着松果和树叶标本。",
+          "value": "了解自然对象",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-037-A"
+        },
+        "B": {
+          "skill": "spatial_layout",
+          "text": "标本分放在上、下两层，展签在各层前沿。",
+          "value": "了解展示布局",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-037-B"
+        }
+      },
+      "comparison": "A用于了解自然对象；B用于了解展示布局。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-038",
+      "kind": "pair",
+      "scene": "exhibition",
+      "activity": "review",
+      "prompt": "你在摄影展停下，想先了解面前这张照片。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "artwork_exhibit",
+          "text": "照片里有一排房屋，前面是一条河。",
+          "value": "了解图像内容",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-038-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "这张照片是黑白的，明暗对比较强。",
+          "value": "了解表现风格",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-038-B"
+        }
+      },
+      "comparison": "A用于了解图像内容；B用于了解表现风格。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-039",
+      "kind": "pair",
+      "scene": "leisure",
+      "activity": "review",
+      "prompt": "你坐在公园长椅上休息，愿意听一些周围景物介绍。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "animal_nature",
+          "text": "前方花坛里种着向日葵。",
+          "value": "了解自然景物",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-039-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "花坛围栏是白色，做成连续的弧形。",
+          "value": "了解景观设计",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-039-B"
+        }
+      },
+      "comparison": "A用于了解自然景物；B用于了解景观设计。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-040",
+      "kind": "pair",
+      "scene": "leisure",
+      "activity": "review",
+      "prompt": "你停在公园观景处，想了解眼前景观。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "animal_nature",
+          "text": "水面上能看见几只鸭子。",
+          "value": "了解自然对象，不推断动作轨迹",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-040-A"
+        },
+        "B": {
+          "skill": "spatial_layout",
+          "text": "水池在前方，凉亭在水池右侧。",
+          "value": "了解景观分布",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-040-B"
+        }
+      },
+      "comparison": "A用于了解自然对象，不推断动作轨迹；B用于了解景观分布。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-041",
+      "kind": "pair",
+      "scene": "leisure",
+      "activity": "review",
+      "prompt": "你在庭院座椅上休息，想听一些院子的介绍。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "scene_overview",
+          "text": "院内设有花坛区和阅读休息区。",
+          "value": "了解区域用途",
+          "features": {
+            "facility_interest": 1
+          },
+          "fact_id": "SGPE7-041-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "花坛边缘铺着红色砖块，座椅是深绿色。",
+          "value": "了解环境外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-041-B"
+        }
+      },
+      "comparison": "A用于了解区域用途；B用于了解环境外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-042",
+      "kind": "pair",
+      "scene": "leisure",
+      "activity": "review",
+      "prompt": "你停在一面壁画前，想了解它的样子。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "artwork_exhibit",
+          "text": "壁画描绘着山峰和一轮圆月。",
+          "value": "了解绘画内容",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-042-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "壁画主要使用深蓝色与银白色。",
+          "value": "了解配色",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-042-B"
+        }
+      },
+      "comparison": "A用于了解绘画内容；B用于了解配色。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-043",
+      "kind": "pair",
+      "scene": "indoor",
+      "activity": "review",
+      "prompt": "你坐在酒店大厅等候，想了解这个空间，不急着办理业务。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "scene_overview",
+          "text": "大厅设有接待区和阅读休息区。",
+          "value": "了解区域用途",
+          "features": {
+            "facility_interest": 1
+          },
+          "fact_id": "SGPE7-043-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "大厅的灯罩呈圆球形，地毯有蓝色线条。",
+          "value": "了解空间外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-043-B"
+        }
+      },
+      "comparison": "A用于了解区域用途；B用于了解空间外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-044",
+      "kind": "pair",
+      "scene": "indoor",
+      "activity": "review",
+      "prompt": "你已进入活动室并坐好，想了解周围布置。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "spatial_layout",
+          "text": "书架在座椅左侧，展示柜在右侧。",
+          "value": "了解局部位置",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-044-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "展示柜上摆着彩色纸花，书架是浅木色。",
+          "value": "了解布置风格",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-044-B"
+        }
+      },
+      "comparison": "A用于了解局部位置；B用于了解布置风格。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-045",
+      "kind": "pair",
+      "scene": "transit",
+      "activity": "review",
+      "prompt": "你的乘车线路和候车位置已经确认，目前坐着等候，也不需要找座位。你想先了解候车室的哪条补充信息？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "scene_overview",
+          "text": "候车室设有阅读角和饮水区。",
+          "value": "了解可用区域，不替代班次提醒",
+          "features": {
+            "facility_interest": 1
+          },
+          "fact_id": "SGPE7-045-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "候车室墙上有一幅蓝色的城市线描画。",
+          "value": "了解环境文化细节",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-045-B"
+        }
+      },
+      "comparison": "A用于了解可用区域，不替代班次提醒；B用于了解环境文化细节。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-046",
+      "kind": "pair",
+      "scene": "transit",
+      "activity": "review",
+      "prompt": "你已经确认班次，正在候车室坐着休息，想了解周围布局。你更想先听哪条补充信息？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "spatial_layout",
+          "text": "饮水区在座椅左侧，阅读角在右侧。",
+          "value": "了解局部区域位置",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-046-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "阅读角的书架做成树枝形状。",
+          "value": "了解设计细节",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-046-B"
+        }
+      },
+      "comparison": "A用于了解局部区域位置；B用于了解设计细节。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-047",
+      "kind": "pair",
+      "scene": "mobility",
+      "activity": "review",
+      "prompt": "你已停在步行街的休息区，暂时不走动，想了解街景。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "scene_overview",
+          "text": "这段步行街主要是书店和咖啡店。",
+          "value": "了解街区内容",
+          "features": {
+            "facility_interest": 1
+          },
+          "fact_id": "SGPE7-047-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "沿街店面的雨棚采用红白条纹。",
+          "value": "了解街景外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-047-B"
+        }
+      },
+      "comparison": "A用于了解街区内容；B用于了解街景外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-048",
+      "kind": "pair",
+      "scene": "mobility",
+      "activity": "review",
+      "prompt": "你坐在街边休息区，想听眼前花园的介绍，暂时不赶路。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "animal_nature",
+          "text": "花园里能看见竹子和一丛黄色花朵。",
+          "value": "了解自然对象",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-048-A"
+        },
+        "B": {
+          "skill": "spatial_layout",
+          "text": "花坛在座椅前方，雕塑在花坛左侧。",
+          "value": "了解景物分布",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-048-B"
+        }
+      },
+      "comparison": "A用于了解自然对象；B用于了解景物分布。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-049",
+      "kind": "pair",
+      "scene": "social",
+      "activity": "review",
+      "prompt": "聚会还未开始，你已经坐好，想了解活动房间的布置。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "scene_overview",
+          "text": "房间分为茶点区和桌游区。",
+          "value": "了解活动区域",
+          "features": {
+            "facility_interest": 1
+          },
+          "fact_id": "SGPE7-049-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "桌上铺着格纹桌布，墙上挂着彩色纸旗。",
+          "value": "了解聚会氛围的可见细节",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-049-B"
+        }
+      },
+      "comparison": "A用于了解活动区域；B用于了解聚会氛围的可见细节。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-050",
+      "kind": "pair",
+      "scene": "social",
+      "activity": "review",
+      "prompt": "你坐在朋友家的会客区，聊天还未开始，想了解周围环境。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "spatial_layout",
+          "text": "茶几在沙发前方，书架在沙发左侧。",
+          "value": "了解局部位置",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-050-A"
+        },
+        "B": {
+          "skill": "visual_style",
+          "text": "沙发是深蓝色，靠垫上有白色圆点。",
+          "value": "了解环境外观",
+          "features": {
+            "aesthetic_detail": 1
+          },
+          "fact_id": "SGPE7-050-B"
+        }
+      },
+      "comparison": "A用于了解局部位置；B用于了解环境外观。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-051",
+      "kind": "pair",
+      "scene": "healthcare",
+      "activity": "review",
+      "prompt": "你已完成报到并确认自己的等候安排，现在坐着休息，愿意了解等候区。你更想先听哪条补充信息？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "scene_overview",
+          "text": "区域标牌写着，这里同时服务内科和康复科。",
+          "value": "了解区域服务范围，不替代本人叫号",
+          "features": {
+            "facility_interest": 1
+          },
+          "fact_id": "SGPE7-051-A"
+        },
+        "B": {
+          "skill": "spatial_layout",
+          "text": "饮水点在座椅左侧，资料架在右侧。",
+          "value": "了解服务设施方位",
+          "features": {
+            "spatial_layout": 1
+          },
+          "fact_id": "SGPE7-051-B"
+        }
+      },
+      "comparison": "A用于了解区域服务范围，不替代本人叫号；B用于了解服务设施方位。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-052",
+      "kind": "pair",
+      "scene": "healthcare",
+      "activity": "review",
+      "prompt": "你坐在服务台旁，初次了解一张尚未填写的联系表，现在不填写。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "document_type",
+          "text": "这张表分成联系方式和联系时间两部分。",
+          "value": "了解表格结构",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-052-A"
+        },
+        "B": {
+          "skill": "form_field",
+          "text": "表上有电话号码栏和方便联系时段栏。",
+          "value": "了解所需字段，不收集真实值",
+          "features": {
+            "task_focus": 1
+          },
+          "fact_id": "SGPE7-052-B"
+        }
+      },
+      "comparison": "A用于了解表格结构；B用于了解所需字段，不收集真实值。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-053",
+      "kind": "pair",
+      "scene": "work",
+      "activity": "review",
+      "prompt": "你在阅读器中初次打开一份培训讲义，还没开始读，正在安排阅读。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "document_type",
+          "text": "这份讲义分为操作说明和练习两部分。",
+          "value": "了解阅读内容的组织",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-053-A"
+        },
+        "B": {
+          "skill": "status_time",
+          "text": "阅读器显示，这份讲义共有36页。",
+          "value": "估计阅读规模和安排时间，不推断阅读速度",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-053-B"
+        }
+      },
+      "comparison": "A用于了解阅读内容的组织；B用于估计阅读规模和安排时间，不推断阅读速度。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    },
+    {
+      "id": "SGPE7-054",
+      "kind": "pair",
+      "scene": "home",
+      "activity": "review",
+      "prompt": "你在家中初次打开一份电子活动手册，准备安排接下来的阅读。你更想先听哪条？",
+      "source": "authored_text_vignette",
+      "evidence_status": "作者编写假设情境，未配图、未作视觉核验、待BLV认知访谈",
+      "options": {
+        "A": {
+          "skill": "status_time",
+          "text": "阅读器显示，这份手册共有24页。",
+          "value": "了解阅读规模",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-054-A"
+        },
+        "B": {
+          "skill": "document_type",
+          "text": "这份手册分为活动日程和场地介绍两部分。",
+          "value": "了解内容组织",
+          "features": {
+            "state_detail": 1
+          },
+          "fact_id": "SGPE7-054-B"
+        }
+      },
+      "comparison": "A用于了解阅读规模；B用于了解内容组织。测量本情境下先听顺序，不表示另一项无价值。",
+      "review_risk": "需预试复述题意、说明双方用途及是否必须同时听；不以A/B比例代替效度。"
+    }
+  ],
+  "needs": [
+    {
+      "id": "NEED7-01",
+      "kind": "need",
+      "skill": "route_landmark",
+      "activity": "orient",
+      "activity_label": "沿路线确认地标",
+      "scenes": [
+        "mobility",
+        "transit",
+        "shopping",
+        "exhibition",
+        "leisure",
+        "indoor"
+      ],
+      "prompt": "当你正在沿路线确认地标时，是否希望系统留意已确认路线中的可识别地标？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-02",
+      "kind": "need",
+      "skill": "station_identity",
+      "activity": "confirm_stop",
+      "activity_label": "确认车站",
+      "scenes": [
+        "transit",
+        "mobility"
+      ],
+      "prompt": "当你正在确认车站时，是否希望系统核对当前站名和站台方向？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-03",
+      "kind": "need",
+      "skill": "route_number",
+      "activity": "confirm_route",
+      "activity_label": "确认线路",
+      "scenes": [
+        "transit",
+        "mobility"
+      ],
+      "prompt": "当你正在确认线路时，是否希望系统核对目标车辆的线路号与目的地？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-04",
+      "kind": "need",
+      "skill": "departure_status",
+      "activity": "wait_trip",
+      "activity_label": "等候班次",
+      "scenes": [
+        "transit"
+      ],
+      "prompt": "当你正在等候班次时，是否希望系统留意已确认班次的发车信息？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-05",
+      "kind": "need",
+      "skill": "boarding_door",
+      "activity": "boarding",
+      "activity_label": "准备上车",
+      "scenes": [
+        "transit"
+      ],
+      "prompt": "当你正在准备上车时，是否希望系统定位目标车辆的上车门？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-06",
+      "kind": "need",
+      "skill": "queue_position",
+      "activity": "queue",
+      "activity_label": "参加排队",
+      "scenes": [
+        "transit",
+        "shopping",
+        "healthcare",
+        "social",
+        "indoor"
+      ],
+      "prompt": "当你正在参加排队时，是否希望系统确认与自己相关的队尾和轮次？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-07",
+      "kind": "need",
+      "skill": "seat_availability",
+      "activity": "find_seat",
+      "activity_label": "寻找座位",
+      "scenes": [
+        "transit",
+        "dining",
+        "healthcare",
+        "social",
+        "indoor",
+        "leisure"
+      ],
+      "prompt": "当你正在寻找座位时，是否希望系统留意座面可见的占用情况和位置？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-08",
+      "kind": "need",
+      "skill": "shelf_location",
+      "activity": "find_product",
+      "activity_label": "寻找商品",
+      "scenes": [
+        "shopping"
+      ],
+      "prompt": "当你正在寻找商品时，是否希望系统定位已确认商品在货架上的位置？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-09",
+      "kind": "need",
+      "skill": "stock_availability",
+      "activity": "find_product",
+      "activity_label": "寻找商品",
+      "scenes": [
+        "shopping"
+      ],
+      "prompt": "当你正在寻找商品时，是否希望系统查看目标货位当前可见的商品？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-10",
+      "kind": "need",
+      "skill": "checkout_direction",
+      "activity": "checkout",
+      "activity_label": "准备结账",
+      "scenes": [
+        "shopping",
+        "dining"
+      ],
+      "prompt": "当你正在准备结账时，是否希望系统寻找有明确标识的结账处？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-11",
+      "kind": "need",
+      "skill": "receipt_payment",
+      "activity": "verify_receipt",
+      "activity_label": "核对本人票据",
+      "scenes": [
+        "shopping",
+        "dining",
+        "transit",
+        "healthcare"
+      ],
+      "prompt": "当你正在核对本人票据时，是否希望系统在本人授权后读取票据和支付界面？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-12",
+      "kind": "need",
+      "skill": "menu_item",
+      "activity": "order_food",
+      "activity_label": "准备点餐",
+      "scenes": [
+        "dining",
+        "shopping"
+      ],
+      "prompt": "当你正在准备点餐时，是否希望系统阅读清楚的菜单菜名？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-13",
+      "kind": "need",
+      "skill": "cooking_control",
+      "activity": "inspect_controls",
+      "activity_label": "了解厨具面板",
+      "scenes": [
+        "home",
+        "dining"
+      ],
+      "prompt": "当你正在了解厨具面板时，是否希望系统读取可核实的厨具按钮和档位，不执行操作？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-14",
+      "kind": "need",
+      "skill": "personal_item",
+      "activity": "find_item",
+      "activity_label": "寻找指定物品",
+      "scenes": [
+        "home",
+        "work",
+        "social",
+        "indoor"
+      ],
+      "prompt": "当你正在寻找指定物品时，是否希望系统寻找用户已经说明特征的物品？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-15",
+      "kind": "need",
+      "skill": "appliance_state",
+      "activity": "inspect_appliance",
+      "activity_label": "查看家电",
+      "scenes": [
+        "home",
+        "indoor"
+      ],
+      "prompt": "当你正在查看家电时，是否希望系统查看有文字或明确指示的设备状态？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-16",
+      "kind": "need",
+      "skill": "cleaning_state",
+      "activity": "clean",
+      "activity_label": "整理清洁",
+      "scenes": [
+        "home",
+        "work",
+        "indoor"
+      ],
+      "prompt": "当你正在整理清洁时，是否希望系统定位当前要清理区域内明显的污渍或散落物？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-17",
+      "kind": "need",
+      "skill": "delivery_mail",
+      "activity": "check_delivery",
+      "activity_label": "查看包裹",
+      "scenes": [
+        "home",
+        "work",
+        "indoor"
+      ],
+      "prompt": "当你正在查看包裹时，是否希望系统留意与用户当前任务相关的可见包裹或信件？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-18",
+      "kind": "need",
+      "skill": "document_text",
+      "activity": "read_document",
+      "activity_label": "阅读指定文档",
+      "scenes": [
+        "work",
+        "healthcare",
+        "home",
+        "indoor"
+      ],
+      "prompt": "当你正在阅读指定文档时，是否希望系统读取本人授权的指定正文？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-19",
+      "kind": "need",
+      "skill": "handwriting",
+      "activity": "read_note",
+      "activity_label": "阅读指定笔记",
+      "scenes": [
+        "work",
+        "home",
+        "indoor"
+      ],
+      "prompt": "当你正在阅读指定笔记时，是否希望系统读取清楚可辨的手写笔记？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-20",
+      "kind": "need",
+      "skill": "board_presentation",
+      "activity": "follow_presentation",
+      "activity_label": "听讲或开会",
+      "scenes": [
+        "work",
+        "indoor"
+      ],
+      "prompt": "当你正在听讲或开会时，是否希望系统了解当前可读的投影和白板内容？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-21",
+      "kind": "need",
+      "skill": "chart_diagram",
+      "activity": "read_chart",
+      "activity_label": "查看图表",
+      "scenes": [
+        "work",
+        "exhibition",
+        "indoor"
+      ],
+      "prompt": "当你正在查看图表时，是否希望系统读取清楚的图例、坐标和标注？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-22",
+      "kind": "need",
+      "skill": "person_presence",
+      "activity": "social_orient",
+      "activity_label": "了解周围人员",
+      "scenes": [
+        "social",
+        "transit",
+        "shopping",
+        "healthcare",
+        "work",
+        "leisure",
+        "indoor"
+      ],
+      "prompt": "当你正在了解周围人员时，是否希望系统提示与当前交往有关的可见人员及方位？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-23",
+      "kind": "need",
+      "skill": "group_layout",
+      "activity": "join_group",
+      "activity_label": "准备加入小组",
+      "scenes": [
+        "social",
+        "work",
+        "exhibition",
+        "leisure",
+        "healthcare",
+        "indoor"
+      ],
+      "prompt": "当你正在准备加入小组时，是否希望系统了解可见的小组站位，不推断人际关系？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-24",
+      "kind": "need",
+      "skill": "gesture_pointing",
+      "activity": "follow_gesture",
+      "activity_label": "理解相关手势",
+      "scenes": [
+        "social",
+        "work",
+        "exhibition",
+        "shopping",
+        "healthcare"
+      ],
+      "prompt": "当你正在理解相关手势时，是否希望系统描述与当前交互相关的明确可见手势？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-25",
+      "kind": "need",
+      "skill": "service_role",
+      "activity": "find_service",
+      "activity_label": "寻找现场帮助",
+      "scenes": [
+        "shopping",
+        "transit",
+        "healthcare",
+        "exhibition",
+        "indoor"
+      ],
+      "prompt": "当你正在寻找现场帮助时，是否希望系统寻找有明确标识的服务台？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": false
+    },
+    {
+      "id": "NEED7-26",
+      "kind": "need",
+      "skill": "handoff_object",
+      "activity": "receive_item",
+      "activity_label": "接取交还物品",
+      "scenes": [
+        "social",
+        "shopping",
+        "healthcare",
+        "work"
+      ],
+      "prompt": "当你正在接取交还物品时，是否希望系统留意明确递交给用户的物品及位置？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-27",
+      "kind": "need",
+      "skill": "requested_object",
+      "activity": "find_target",
+      "activity_label": "寻找明确目标",
+      "scenes": [
+        "mobility",
+        "transit",
+        "shopping",
+        "dining",
+        "home",
+        "work",
+        "social",
+        "healthcare",
+        "exhibition",
+        "leisure",
+        "indoor"
+      ],
+      "prompt": "当你正在寻找明确目标时，是否希望系统寻找已确认名称和特征的目标？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    },
+    {
+      "id": "NEED7-28",
+      "kind": "need",
+      "skill": "pointed_object",
+      "activity": "identify_pointed",
+      "activity_label": "识别指向物",
+      "scenes": [
+        "shopping",
+        "dining",
+        "home",
+        "work",
+        "exhibition",
+        "healthcare",
+        "indoor"
+      ],
+      "prompt": "当你正在识别指向物时，是否希望系统确认用户指向的物体，指向不清时询问？",
+      "options": {
+        "ON": "在相关活动中留意这类信息。",
+        "OFF": "不自动留意；我明确提出时仍要回应。",
+        "SKIP": "暂时跳过。"
+      },
+      "evidence_status": "需求配置，不是A/B成对样本；开启不证明目标存在。",
+      "requires_target": true
+    }
+  ],
+  "edges": [
+    {
+      "id": "mobility/route_blocker",
+      "scene": "mobility",
+      "skill": "route_blocker",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/route_blocker",
+      "scene": "transit",
+      "skill": "route_blocker",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/route_blocker",
+      "scene": "indoor",
+      "skill": "route_blocker",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/route_blocker",
+      "scene": "shopping",
+      "skill": "route_blocker",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/overhead_hazard",
+      "scene": "mobility",
+      "skill": "overhead_hazard",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/overhead_hazard",
+      "scene": "transit",
+      "skill": "overhead_hazard",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/overhead_hazard",
+      "scene": "indoor",
+      "skill": "overhead_hazard",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/overhead_hazard",
+      "scene": "shopping",
+      "skill": "overhead_hazard",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/level_change",
+      "scene": "mobility",
+      "skill": "level_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/level_change",
+      "scene": "transit",
+      "skill": "level_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/level_change",
+      "scene": "indoor",
+      "skill": "level_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/level_change",
+      "scene": "shopping",
+      "skill": "level_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/level_change",
+      "scene": "home",
+      "skill": "level_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/surface_condition",
+      "scene": "mobility",
+      "skill": "surface_condition",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/surface_condition",
+      "scene": "transit",
+      "skill": "surface_condition",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/surface_condition",
+      "scene": "indoor",
+      "skill": "surface_condition",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/surface_condition",
+      "scene": "shopping",
+      "skill": "surface_condition",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/surface_condition",
+      "scene": "home",
+      "skill": "surface_condition",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/curb_crossing",
+      "scene": "mobility",
+      "skill": "curb_crossing",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/curb_crossing",
+      "scene": "transit",
+      "skill": "curb_crossing",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/pedestrian_signal",
+      "scene": "mobility",
+      "skill": "pedestrian_signal",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/pedestrian_signal",
+      "scene": "transit",
+      "skill": "pedestrian_signal",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/moving_vehicle",
+      "scene": "mobility",
+      "skill": "moving_vehicle",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/moving_vehicle",
+      "scene": "transit",
+      "skill": "moving_vehicle",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/route_landmark",
+      "scene": "mobility",
+      "skill": "route_landmark",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/route_landmark",
+      "scene": "transit",
+      "skill": "route_landmark",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/route_landmark",
+      "scene": "shopping",
+      "skill": "route_landmark",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "exhibition/route_landmark",
+      "scene": "exhibition",
+      "skill": "route_landmark",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "leisure/route_landmark",
+      "scene": "leisure",
+      "skill": "route_landmark",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/route_landmark",
+      "scene": "indoor",
+      "skill": "route_landmark",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/platform_edge",
+      "scene": "transit",
+      "skill": "platform_edge",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/boarding_gap",
+      "scene": "transit",
+      "skill": "boarding_gap",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/station_identity",
+      "scene": "transit",
+      "skill": "station_identity",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/station_identity",
+      "scene": "mobility",
+      "skill": "station_identity",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/route_number",
+      "scene": "transit",
+      "skill": "route_number",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/route_number",
+      "scene": "mobility",
+      "skill": "route_number",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/departure_status",
+      "scene": "transit",
+      "skill": "departure_status",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/boarding_door",
+      "scene": "transit",
+      "skill": "boarding_door",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/queue_position",
+      "scene": "transit",
+      "skill": "queue_position",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/queue_position",
+      "scene": "shopping",
+      "skill": "queue_position",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/queue_position",
+      "scene": "healthcare",
+      "skill": "queue_position",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/queue_position",
+      "scene": "social",
+      "skill": "queue_position",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/queue_position",
+      "scene": "indoor",
+      "skill": "queue_position",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/seat_availability",
+      "scene": "transit",
+      "skill": "seat_availability",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/seat_availability",
+      "scene": "dining",
+      "skill": "seat_availability",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/seat_availability",
+      "scene": "healthcare",
+      "skill": "seat_availability",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/seat_availability",
+      "scene": "social",
+      "skill": "seat_availability",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/seat_availability",
+      "scene": "indoor",
+      "skill": "seat_availability",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "leisure/seat_availability",
+      "scene": "leisure",
+      "skill": "seat_availability",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/product_identity",
+      "scene": "shopping",
+      "skill": "product_identity",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-005",
+        "SGPE7-008"
+      ]
+    },
+    {
+      "id": "home/product_identity",
+      "scene": "home",
+      "skill": "product_identity",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-018"
+      ]
+    },
+    {
+      "id": "shopping/product_variant",
+      "scene": "shopping",
+      "skill": "product_variant",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-001",
+        "SGPE7-002",
+        "SGPE7-006",
+        "SGPE7-007"
+      ]
+    },
+    {
+      "id": "home/product_variant",
+      "scene": "home",
+      "skill": "product_variant",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-017"
+      ]
+    },
+    {
+      "id": "shopping/shelf_location",
+      "scene": "shopping",
+      "skill": "shelf_location",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/exact_price",
+      "scene": "shopping",
+      "skill": "exact_price",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-001",
+        "SGPE7-002",
+        "SGPE7-003",
+        "SGPE7-004",
+        "SGPE7-007"
+      ]
+    },
+    {
+      "id": "dining/exact_price",
+      "scene": "dining",
+      "skill": "exact_price",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-011"
+      ]
+    },
+    {
+      "id": "shopping/stock_availability",
+      "scene": "shopping",
+      "skill": "stock_availability",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/comparison_alternative",
+      "scene": "shopping",
+      "skill": "comparison_alternative",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-003"
+      ]
+    },
+    {
+      "id": "dining/comparison_alternative",
+      "scene": "dining",
+      "skill": "comparison_alternative",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-011"
+      ]
+    },
+    {
+      "id": "shopping/checkout_direction",
+      "scene": "shopping",
+      "skill": "checkout_direction",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/checkout_direction",
+      "scene": "dining",
+      "skill": "checkout_direction",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/receipt_payment",
+      "scene": "shopping",
+      "skill": "receipt_payment",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/receipt_payment",
+      "scene": "dining",
+      "skill": "receipt_payment",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/receipt_payment",
+      "scene": "transit",
+      "skill": "receipt_payment",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/receipt_payment",
+      "scene": "healthcare",
+      "skill": "receipt_payment",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/cooking_hazard",
+      "scene": "dining",
+      "skill": "cooking_hazard",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/cooking_hazard",
+      "scene": "home",
+      "skill": "cooking_hazard",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/spill_breakage",
+      "scene": "dining",
+      "skill": "spill_breakage",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/spill_breakage",
+      "scene": "home",
+      "skill": "spill_breakage",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/spill_breakage",
+      "scene": "shopping",
+      "skill": "spill_breakage",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/spill_breakage",
+      "scene": "indoor",
+      "skill": "spill_breakage",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/food_identity",
+      "scene": "dining",
+      "skill": "food_identity",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-010",
+        "SGPE7-012"
+      ]
+    },
+    {
+      "id": "home/food_identity",
+      "scene": "home",
+      "skill": "food_identity",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/food_identity",
+      "scene": "shopping",
+      "skill": "food_identity",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/plate_layout",
+      "scene": "dining",
+      "skill": "plate_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-009",
+        "SGPE7-014"
+      ]
+    },
+    {
+      "id": "home/plate_layout",
+      "scene": "home",
+      "skill": "plate_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-023"
+      ]
+    },
+    {
+      "id": "dining/tableware_location",
+      "scene": "dining",
+      "skill": "tableware_location",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-009",
+        "SGPE7-010"
+      ]
+    },
+    {
+      "id": "home/tableware_location",
+      "scene": "home",
+      "skill": "tableware_location",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-023"
+      ]
+    },
+    {
+      "id": "dining/menu_item",
+      "scene": "dining",
+      "skill": "menu_item",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/menu_item",
+      "scene": "shopping",
+      "skill": "menu_item",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/cooking_control",
+      "scene": "home",
+      "skill": "cooking_control",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/cooking_control",
+      "scene": "dining",
+      "skill": "cooking_control",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/printed_safety_label",
+      "scene": "shopping",
+      "skill": "printed_safety_label",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/printed_safety_label",
+      "scene": "dining",
+      "skill": "printed_safety_label",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/printed_safety_label",
+      "scene": "home",
+      "skill": "printed_safety_label",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/printed_safety_label",
+      "scene": "healthcare",
+      "skill": "printed_safety_label",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/personal_item",
+      "scene": "home",
+      "skill": "personal_item",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/personal_item",
+      "scene": "work",
+      "skill": "personal_item",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/personal_item",
+      "scene": "social",
+      "skill": "personal_item",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/personal_item",
+      "scene": "indoor",
+      "skill": "personal_item",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/container_contents",
+      "scene": "home",
+      "skill": "container_contents",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-015",
+        "SGPE7-016",
+        "SGPE7-020"
+      ]
+    },
+    {
+      "id": "shopping/container_contents",
+      "scene": "shopping",
+      "skill": "container_contents",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/container_contents",
+      "scene": "work",
+      "skill": "container_contents",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-027",
+        "SGPE7-032"
+      ]
+    },
+    {
+      "id": "home/appliance_state",
+      "scene": "home",
+      "skill": "appliance_state",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/appliance_state",
+      "scene": "indoor",
+      "skill": "appliance_state",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/clothing_appearance",
+      "scene": "home",
+      "skill": "clothing_appearance",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-017",
+        "SGPE7-020"
+      ]
+    },
+    {
+      "id": "shopping/clothing_appearance",
+      "scene": "shopping",
+      "skill": "clothing_appearance",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-004"
+      ]
+    },
+    {
+      "id": "social/clothing_appearance",
+      "scene": "social",
+      "skill": "clothing_appearance",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/clothing_matching",
+      "scene": "home",
+      "skill": "clothing_matching",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/clothing_matching",
+      "scene": "shopping",
+      "skill": "clothing_matching",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/clothing_matching",
+      "scene": "social",
+      "skill": "clothing_matching",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/cleaning_state",
+      "scene": "home",
+      "skill": "cleaning_state",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/cleaning_state",
+      "scene": "work",
+      "skill": "cleaning_state",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/cleaning_state",
+      "scene": "indoor",
+      "skill": "cleaning_state",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/storage_organization",
+      "scene": "home",
+      "skill": "storage_organization",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-015",
+        "SGPE7-016",
+        "SGPE7-018"
+      ]
+    },
+    {
+      "id": "work/storage_organization",
+      "scene": "work",
+      "skill": "storage_organization",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-027"
+      ]
+    },
+    {
+      "id": "shopping/storage_organization",
+      "scene": "shopping",
+      "skill": "storage_organization",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-006"
+      ]
+    },
+    {
+      "id": "home/delivery_mail",
+      "scene": "home",
+      "skill": "delivery_mail",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/delivery_mail",
+      "scene": "work",
+      "skill": "delivery_mail",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/delivery_mail",
+      "scene": "indoor",
+      "skill": "delivery_mail",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/document_type",
+      "scene": "work",
+      "skill": "document_type",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-025",
+        "SGPE7-028",
+        "SGPE7-029",
+        "SGPE7-053"
+      ]
+    },
+    {
+      "id": "healthcare/document_type",
+      "scene": "healthcare",
+      "skill": "document_type",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-052"
+      ]
+    },
+    {
+      "id": "home/document_type",
+      "scene": "home",
+      "skill": "document_type",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-021",
+        "SGPE7-054"
+      ]
+    },
+    {
+      "id": "indoor/document_type",
+      "scene": "indoor",
+      "skill": "document_type",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/document_text",
+      "scene": "work",
+      "skill": "document_text",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/document_text",
+      "scene": "healthcare",
+      "skill": "document_text",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/document_text",
+      "scene": "home",
+      "skill": "document_text",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/document_text",
+      "scene": "indoor",
+      "skill": "document_text",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/form_field",
+      "scene": "work",
+      "skill": "form_field",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-025",
+        "SGPE7-029"
+      ]
+    },
+    {
+      "id": "healthcare/form_field",
+      "scene": "healthcare",
+      "skill": "form_field",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-052"
+      ]
+    },
+    {
+      "id": "indoor/form_field",
+      "scene": "indoor",
+      "skill": "form_field",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/form_field",
+      "scene": "home",
+      "skill": "form_field",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-021"
+      ]
+    },
+    {
+      "id": "work/handwriting",
+      "scene": "work",
+      "skill": "handwriting",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/handwriting",
+      "scene": "home",
+      "skill": "handwriting",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/handwriting",
+      "scene": "indoor",
+      "skill": "handwriting",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/board_presentation",
+      "scene": "work",
+      "skill": "board_presentation",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/board_presentation",
+      "scene": "indoor",
+      "skill": "board_presentation",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/chart_diagram",
+      "scene": "work",
+      "skill": "chart_diagram",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "exhibition/chart_diagram",
+      "scene": "exhibition",
+      "skill": "chart_diagram",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/chart_diagram",
+      "scene": "indoor",
+      "skill": "chart_diagram",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/screen_control",
+      "scene": "work",
+      "skill": "screen_control",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-026",
+        "SGPE7-030"
+      ]
+    },
+    {
+      "id": "home/screen_control",
+      "scene": "home",
+      "skill": "screen_control",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-019",
+        "SGPE7-024"
+      ]
+    },
+    {
+      "id": "indoor/screen_control",
+      "scene": "indoor",
+      "skill": "screen_control",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/status_time",
+      "scene": "work",
+      "skill": "status_time",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-026",
+        "SGPE7-030",
+        "SGPE7-053"
+      ]
+    },
+    {
+      "id": "home/status_time",
+      "scene": "home",
+      "skill": "status_time",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-019",
+        "SGPE7-024",
+        "SGPE7-054"
+      ]
+    },
+    {
+      "id": "transit/status_time",
+      "scene": "transit",
+      "skill": "status_time",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/status_time",
+      "scene": "healthcare",
+      "skill": "status_time",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/status_time",
+      "scene": "indoor",
+      "skill": "status_time",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/private_content",
+      "scene": "social",
+      "skill": "private_content",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/private_content",
+      "scene": "healthcare",
+      "skill": "private_content",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/private_content",
+      "scene": "work",
+      "skill": "private_content",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/private_content",
+      "scene": "home",
+      "skill": "private_content",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/private_content",
+      "scene": "shopping",
+      "skill": "private_content",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/person_presence",
+      "scene": "social",
+      "skill": "person_presence",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/person_presence",
+      "scene": "transit",
+      "skill": "person_presence",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/person_presence",
+      "scene": "shopping",
+      "skill": "person_presence",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/person_presence",
+      "scene": "healthcare",
+      "skill": "person_presence",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/person_presence",
+      "scene": "work",
+      "skill": "person_presence",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "leisure/person_presence",
+      "scene": "leisure",
+      "skill": "person_presence",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/person_presence",
+      "scene": "indoor",
+      "skill": "person_presence",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/known_person",
+      "scene": "social",
+      "skill": "known_person",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/known_person",
+      "scene": "home",
+      "skill": "known_person",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/known_person",
+      "scene": "work",
+      "skill": "known_person",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "leisure/known_person",
+      "scene": "leisure",
+      "skill": "known_person",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/group_layout",
+      "scene": "social",
+      "skill": "group_layout",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/group_layout",
+      "scene": "work",
+      "skill": "group_layout",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "exhibition/group_layout",
+      "scene": "exhibition",
+      "skill": "group_layout",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "leisure/group_layout",
+      "scene": "leisure",
+      "skill": "group_layout",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/group_layout",
+      "scene": "healthcare",
+      "skill": "group_layout",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/group_layout",
+      "scene": "indoor",
+      "skill": "group_layout",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/gesture_pointing",
+      "scene": "social",
+      "skill": "gesture_pointing",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/gesture_pointing",
+      "scene": "work",
+      "skill": "gesture_pointing",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "exhibition/gesture_pointing",
+      "scene": "exhibition",
+      "skill": "gesture_pointing",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/gesture_pointing",
+      "scene": "shopping",
+      "skill": "gesture_pointing",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/gesture_pointing",
+      "scene": "healthcare",
+      "skill": "gesture_pointing",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/conversation_turn",
+      "scene": "social",
+      "skill": "conversation_turn",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/conversation_turn",
+      "scene": "work",
+      "skill": "conversation_turn",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/conversation_turn",
+      "scene": "healthcare",
+      "skill": "conversation_turn",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "leisure/conversation_turn",
+      "scene": "leisure",
+      "skill": "conversation_turn",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/service_role",
+      "scene": "shopping",
+      "skill": "service_role",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/service_role",
+      "scene": "transit",
+      "skill": "service_role",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/service_role",
+      "scene": "healthcare",
+      "skill": "service_role",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "exhibition/service_role",
+      "scene": "exhibition",
+      "skill": "service_role",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/service_role",
+      "scene": "indoor",
+      "skill": "service_role",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/handoff_object",
+      "scene": "social",
+      "skill": "handoff_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/handoff_object",
+      "scene": "shopping",
+      "skill": "handoff_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/handoff_object",
+      "scene": "healthcare",
+      "skill": "handoff_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/handoff_object",
+      "scene": "work",
+      "skill": "handoff_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/scene_overview",
+      "scene": "mobility",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-047"
+      ]
+    },
+    {
+      "id": "transit/scene_overview",
+      "scene": "transit",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-045"
+      ]
+    },
+    {
+      "id": "shopping/scene_overview",
+      "scene": "shopping",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/scene_overview",
+      "scene": "dining",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/scene_overview",
+      "scene": "home",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/scene_overview",
+      "scene": "work",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-031"
+      ]
+    },
+    {
+      "id": "social/scene_overview",
+      "scene": "social",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-049"
+      ]
+    },
+    {
+      "id": "healthcare/scene_overview",
+      "scene": "healthcare",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-051"
+      ]
+    },
+    {
+      "id": "exhibition/scene_overview",
+      "scene": "exhibition",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-035"
+      ]
+    },
+    {
+      "id": "leisure/scene_overview",
+      "scene": "leisure",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-041"
+      ]
+    },
+    {
+      "id": "indoor/scene_overview",
+      "scene": "indoor",
+      "skill": "scene_overview",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-043"
+      ]
+    },
+    {
+      "id": "mobility/requested_object",
+      "scene": "mobility",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/requested_object",
+      "scene": "transit",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/requested_object",
+      "scene": "shopping",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/requested_object",
+      "scene": "dining",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/requested_object",
+      "scene": "home",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/requested_object",
+      "scene": "work",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/requested_object",
+      "scene": "social",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/requested_object",
+      "scene": "healthcare",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "exhibition/requested_object",
+      "scene": "exhibition",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "leisure/requested_object",
+      "scene": "leisure",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/requested_object",
+      "scene": "indoor",
+      "skill": "requested_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/pointed_object",
+      "scene": "shopping",
+      "skill": "pointed_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/pointed_object",
+      "scene": "dining",
+      "skill": "pointed_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/pointed_object",
+      "scene": "home",
+      "skill": "pointed_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/pointed_object",
+      "scene": "work",
+      "skill": "pointed_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "exhibition/pointed_object",
+      "scene": "exhibition",
+      "skill": "pointed_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/pointed_object",
+      "scene": "healthcare",
+      "skill": "pointed_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/pointed_object",
+      "scene": "indoor",
+      "skill": "pointed_object",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "mobility/spatial_layout",
+      "scene": "mobility",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-048"
+      ]
+    },
+    {
+      "id": "transit/spatial_layout",
+      "scene": "transit",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-046"
+      ]
+    },
+    {
+      "id": "shopping/spatial_layout",
+      "scene": "shopping",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-005"
+      ]
+    },
+    {
+      "id": "dining/spatial_layout",
+      "scene": "dining",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-013"
+      ]
+    },
+    {
+      "id": "home/spatial_layout",
+      "scene": "home",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-022"
+      ]
+    },
+    {
+      "id": "work/spatial_layout",
+      "scene": "work",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-028"
+      ]
+    },
+    {
+      "id": "social/spatial_layout",
+      "scene": "social",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-050"
+      ]
+    },
+    {
+      "id": "healthcare/spatial_layout",
+      "scene": "healthcare",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-051"
+      ]
+    },
+    {
+      "id": "exhibition/spatial_layout",
+      "scene": "exhibition",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-035",
+        "SGPE7-037"
+      ]
+    },
+    {
+      "id": "leisure/spatial_layout",
+      "scene": "leisure",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-040"
+      ]
+    },
+    {
+      "id": "indoor/spatial_layout",
+      "scene": "indoor",
+      "skill": "spatial_layout",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-044"
+      ]
+    },
+    {
+      "id": "mobility/meaningful_change",
+      "scene": "mobility",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "transit/meaningful_change",
+      "scene": "transit",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "shopping/meaningful_change",
+      "scene": "shopping",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "dining/meaningful_change",
+      "scene": "dining",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "home/meaningful_change",
+      "scene": "home",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "work/meaningful_change",
+      "scene": "work",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "social/meaningful_change",
+      "scene": "social",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "healthcare/meaningful_change",
+      "scene": "healthcare",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "exhibition/meaningful_change",
+      "scene": "exhibition",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "leisure/meaningful_change",
+      "scene": "leisure",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "indoor/meaningful_change",
+      "scene": "indoor",
+      "skill": "meaningful_change",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "exhibition/artwork_exhibit",
+      "scene": "exhibition",
+      "skill": "artwork_exhibit",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-033",
+        "SGPE7-034",
+        "SGPE7-036",
+        "SGPE7-038"
+      ]
+    },
+    {
+      "id": "leisure/artwork_exhibit",
+      "scene": "leisure",
+      "skill": "artwork_exhibit",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-042"
+      ]
+    },
+    {
+      "id": "indoor/artwork_exhibit",
+      "scene": "indoor",
+      "skill": "artwork_exhibit",
+      "kind": "applicable",
+      "questions": []
+    },
+    {
+      "id": "leisure/animal_nature",
+      "scene": "leisure",
+      "skill": "animal_nature",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-039",
+        "SGPE7-040"
+      ]
+    },
+    {
+      "id": "mobility/animal_nature",
+      "scene": "mobility",
+      "skill": "animal_nature",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-048"
+      ]
+    },
+    {
+      "id": "exhibition/animal_nature",
+      "scene": "exhibition",
+      "skill": "animal_nature",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-037"
+      ]
+    },
+    {
+      "id": "mobility/visual_style",
+      "scene": "mobility",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-047"
+      ]
+    },
+    {
+      "id": "shopping/visual_style",
+      "scene": "shopping",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-008"
+      ]
+    },
+    {
+      "id": "dining/visual_style",
+      "scene": "dining",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-012",
+        "SGPE7-013",
+        "SGPE7-014"
+      ]
+    },
+    {
+      "id": "home/visual_style",
+      "scene": "home",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-022"
+      ]
+    },
+    {
+      "id": "social/visual_style",
+      "scene": "social",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-049",
+        "SGPE7-050"
+      ]
+    },
+    {
+      "id": "exhibition/visual_style",
+      "scene": "exhibition",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-033",
+        "SGPE7-034",
+        "SGPE7-036",
+        "SGPE7-038"
+      ]
+    },
+    {
+      "id": "leisure/visual_style",
+      "scene": "leisure",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-039",
+        "SGPE7-041",
+        "SGPE7-042"
+      ]
+    },
+    {
+      "id": "indoor/visual_style",
+      "scene": "indoor",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-043",
+        "SGPE7-044"
+      ]
+    },
+    {
+      "id": "work/visual_style",
+      "scene": "work",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-031",
+        "SGPE7-032"
+      ]
+    },
+    {
+      "id": "transit/visual_style",
+      "scene": "transit",
+      "skill": "visual_style",
+      "kind": "applicable",
+      "questions": [
+        "SGPE7-045",
+        "SGPE7-046"
+      ]
+    }
+  ],
+  "features": [
+    "state_detail",
+    "action_focus",
+    "task_focus",
+    "spatial_layout",
+    "social_dynamics",
+    "facility_interest",
+    "product_value",
+    "health_attribute",
+    "aesthetic_detail",
+    "alternative_options",
+    "verbosity",
+    "silence_tolerance"
+  ],
+  "role_labels": {
+    "safety": "相关安全：不参与偏好竞争",
+    "privacy": "隐私：先做授权与屏蔽",
+    "task": "任务：先确认需要，必要时直接回答",
+    "optional": "可选补充：条件满足才调顺序",
+    "disabled": "暂禁用：缺少能力或证据",
+    "temporal": "时序门控：当前静态排练不启用"
+  },
+  "fixtures": [
+    {
+      "id": "shop",
+      "scene": "shopping",
+      "activity": "review",
+      "title": "购物：新的一组文字事实",
+      "facts": [
+        {
+          "id": "shop-necessary",
+          "skill": "route_blocker",
+          "text": "行进通道旁有一只伸出的纸箱，请留意。",
+          "tags": [],
+          "required": true,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {}
+        },
+        {
+          "id": "shop-price",
+          "skill": "exact_price",
+          "text": "这盒麦片标价22元。",
+          "tags": [
+            "麦片"
+          ],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "product_value": 1
+          }
+        },
+        {
+          "id": "shop-size",
+          "skill": "product_variant",
+          "text": "这盒麦片净含量750克。",
+          "tags": [
+            "麦片"
+          ],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "state_detail": 1
+          }
+        },
+        {
+          "id": "shop-product",
+          "skill": "product_identity",
+          "text": "旁边货架摆着标为苹果的水果。",
+          "tags": [
+            "水果",
+            "苹果"
+          ],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "product_value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "meal",
+      "scene": "dining",
+      "activity": "review",
+      "title": "用餐：未用于作答的布局",
+      "facts": [
+        {
+          "id": "meal-layout",
+          "skill": "plate_layout",
+          "text": "餐盘左侧是米饭，右侧是豆腐。",
+          "tags": [],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "spatial_layout": 1
+          }
+        },
+        {
+          "id": "meal-tools",
+          "skill": "tableware_location",
+          "text": "小勺在餐盘上方，筷子在右侧。",
+          "tags": [],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "spatial_layout": 1
+          }
+        },
+        {
+          "id": "meal-style",
+          "skill": "visual_style",
+          "text": "餐盘边缘有蓝色花纹。",
+          "tags": [],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "aesthetic_detail": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "home-meal",
+      "scene": "home",
+      "activity": "review",
+      "title": "居家：检验共享餐具偏好",
+      "facts": [
+        {
+          "id": "home-tools",
+          "skill": "tableware_location",
+          "text": "叉子放在点心盘的右侧。",
+          "tags": [],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "spatial_layout": 1
+          }
+        },
+        {
+          "id": "home-food",
+          "skill": "food_identity",
+          "text": "点心盘里有饼干和蛋糕。",
+          "tags": [],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "state_detail": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "scene": "transit",
+      "activity": "review",
+      "title": "候车：无关场景对照",
+      "facts": [
+        {
+          "id": "wait-layout",
+          "skill": "spatial_layout",
+          "text": "饮水点在座椅左侧。",
+          "tags": [],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "spatial_layout": 1
+          }
+        },
+        {
+          "id": "wait-style",
+          "skill": "visual_style",
+          "text": "候车室墙面有绿色植物图案。",
+          "tags": [],
+          "required": false,
+          "activity": "review",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "aesthetic_detail": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "seat",
+      "scene": "transit",
+      "activity": "find_seat",
+      "taskConfirmed": true,
+      "title": "需求演示：寻找座位",
+      "facts": [
+        {
+          "id": "seat-visible",
+          "skill": "seat_availability",
+          "text": "右侧长椅的两处座面未见人或物品。",
+          "tags": [
+            "座位"
+          ],
+          "required": false,
+          "activity": "find_seat",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {}
+        },
+        {
+          "id": "seat-layout",
+          "skill": "spatial_layout",
+          "text": "长椅位于信息台右侧。",
+          "tags": [],
+          "required": false,
+          "activity": "find_seat",
+          "private": false,
+          "evidence": "authored_fixture",
+          "confidence": 1,
+          "features": {
+            "spatial_layout": 1
+          }
+        }
+      ]
+    }
+  ],
+  "demo": [
+    {
+      "title": "第一段：同一事实，三种已学习的偏好",
+      "action": "在演示页点击“建立三份排练画像”，查看购物和用餐的同池输出，再切换任一画像检查其证据账本。",
+      "speech": "这里用三份独立的排练画像代表三位使用者。它们接受的场景事实完全相同，差别是以前的偏好选择。一位更关注具体价格，一位更关注规格，一位更关注商品种类。现在听到的输出是同一个选择器根据各自权重算出来的，不是我为三部设备写好的台词。这里是明确标注的文字事实重放，不是实时摄像头识别。真实设备演示还需要现场网络、感知与语音验证。",
+      "check": "三份画像的可选输出不同；同一条必要提示仍被保留。画像证据标为作者排练选择，不冒充真人记录。"
+    },
+    {
+      "title": "第二段：选择进入同一份图画像",
+      "action": "选“我的画像”，首次校准阶段回答购物题。点击“结束首次校准／开始使用”。之后继续回答用餐题，检查局部修正与无关场景对照。",
+      "speech": "这不是一次做完就消失的问卷。用户可以随时回来继续选择。第一次校准会建立共享偏好以及场景差异；进入使用后，这道用餐题默认只更新用餐范围。图中青色表示合法关联，橙色标出本次更新的参数，连线的存在不等于每次都会被修改。右边列出更新前后的数值及证据。最终是否换一条播报，还取决于事实池、其他偏好和播报预算。",
+      "check": "首次回答显示shared与local基础参数；后续回答显示用餐修正，购物评分不变。两条都需要、都不需要和跳过不形成A/B胜负。"
+    },
+    {
+      "title": "第三段：长期有范围，临时可恢复",
+      "action": "先执行“长期：在用餐场景，多介绍餐盘分布”。再执行“长期：在所有适用场景，多介绍餐具与杯碗位置”。购物页设置“今天买水果”，确认到期时间，查看苹果事实；撤销目标后比较恢复。",
+      "speech": "第一条指令只改用餐分支。第二条明确允许共享，因此它可以影响用餐和居家等合法场景，但依然需要当前活动和可见证据。第三条是今天有效的水果目标，它与长期偏好分开保存。场景中确实有苹果时才提高相关信息的优先级；目标不在事实池里时，系统不会编出水果。撤销或到期后，临时加分消失，长期权重不变。需要找座等任务也有独立的需求开关；必要任务不会因为偏好低被忽略。",
+      "check": "局部无误传播；共享不跨非法边；目标仅匹配已给定标签的事实，撤销与到期恢复。模糊指令先说明不支持，不偷偷写入画像。"
+    }
+  ],
+  "sources": [
+    [
+      "情境决定信息需求：ASSETS 2021 原论文",
+      "https://cs.stanford.edu/~merrie/papers/assets2021_scenarios.pdf",
+      "支持以活动与使用情境组织描述需求，不证明本题库已有效。"
+    ],
+    [
+      "BLV 场景描述实际使用：2024 原论文",
+      "https://arxiv.org/abs/2403.15604",
+      "说明使用任务多样；不能将一个作者的假设当作全部盲人偏好。"
+    ],
+    [
+      "题目措辞与顺序：Pew 方法说明",
+      "https://www.pewresearch.org/writing-survey-questions/",
+      "采用具体措辞、单个判断目标、说明选项顺序影响；不是本题库的质量认证。"
+    ]
+  ],
+  "legacy": {
+    "36": "旧36题全部保留于V6归档，不自动迁移证据",
+    "6": "旧6道图像候选保留，但不作为全库或新版本结果"
+  },
+  "boundary": "完整文字重构版；未配图，非真实视频、非BLV验证量表。离线本地画像不等于手机或JoyAI已接通。",
+  "graphHash": "a5f05cf5574a94b825b3982c11777b6995f81876cf4747e257400c60de594d07",
+  "bankHash": "91f32c1321ee054799e155ccec0b7fdfa1754fffd3f282bfc6216a01f8550d77",
+  "counts": {
+    "pair": 54,
+    "needs": 28,
+    "skills": 64,
+    "edges": 245,
+    "calibratable_skills": 19,
+    "roles": {
+      "safety": 12,
+      "task": 28,
+      "optional": 19,
+      "disabled": 2,
+      "privacy": 1,
+      "temporal": 2
+    },
+    "question_edges": 64
+  }
+}

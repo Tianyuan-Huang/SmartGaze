@@ -1,0 +1,13 @@
+import {useState} from 'react'
+import type {Bank,Session} from '../shared/types'
+import {t,tr,say} from './i18n'
+export default function Tuning({data,session,change,notice,close}:{data:Bank;session:Session;change:(f:()=>void)=>void;notice:(s:string)=>void;close:()=>void}){
+ const [scene,setScene]=useState('shopping'),[index,setIndex]=useState(0),[shared,setShared]=useState(false),[consent,setConsent]=useState(false)
+ const qs=data.questions.filter(q=>q.scene===scene),q=qs[index%Math.max(1,qs.length)],initial=session.phase==='initial'
+ function answer(c:string){if(!q||!consent)return;change(()=>session.answer(q.id,c,initial?'foundation':shared?'shared':scene,true));setIndex(i=>i+1)}
+ return <section className="tuning-product"><h2>{t('偏好调校','Tune your preferences')}</h2><label>{t('场景','Scene')}<select value={scene} onChange={e=>{setScene(e.target.value);setIndex(0)}}>{Object.entries(data.scenes).filter(([s])=>s!=='unknown').map(([id,label])=><option key={id} value={id}>{tr(label)}</option>)}</select></label>
+ {q?<><p className="spoken">{tr(q.prompt)}</p>{(['A','B'] as const).map(c=><button className="option" key={c} disabled={!consent} onClick={()=>answer(c)}>{c}. {tr(q.options[c].text)}</button>)}<div className="choice-extras"><button disabled={!consent} onClick={()=>answer('BOTH')}>{t('都想听','Both')}</button><button disabled={!consent} onClick={()=>answer('NEITHER')}>{t('都不需要','Neither')}</button><button onClick={()=>setIndex(i=>i+1)}>{t('跳过','Skip')}</button></div><button className="text-button" onClick={()=>say(tr(q.prompt)+' A. '+tr(q.options.A.text)+' B. '+tr(q.options.B.text),notice)}>{t('朗读','Read aloud')}</button></>:<p>{t('本场景暂无比较题。','No comparison questions for this scene.')}</p>}
+ {!initial&&<label>{t('应用范围','Apply to')}<select value={shared?'shared':'local'} onChange={e=>{setShared(e.target.value==='shared');setConsent(false)}}><option value="local">{t('仅此场景','This scene only')}</option><option value="shared">{t('所有相关场景','All relevant scenes')}</option></select></label>}
+ <label className="check"><input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)}/><span>{initial?t('同意用选择完善我的偏好。','Use my choices to learn my preferences.'):shared?t('确认适用于所有相关场景。','Apply my choices across relevant scenes.'):t('只调整当前场景。','Adjust this scene only.')}</span></label>
+ <p className="small-note">{qs.length?`${index%qs.length+1} / ${qs.length}`:''} · {t('可随时继续，无需全部完成','Continue anytime; no need to finish every question')}</p><button className="primary wide" onClick={()=>{if(initial)change(()=>session.start());close()}}>{t('完成，开始使用','Done, start using')}</button></section>
+}
