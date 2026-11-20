@@ -10,7 +10,7 @@ SmartGaze personalizes proactive visual assistance through PRISM, a scene-condit
 
 [![Watch the SmartGaze demo](https://tianyuan-huang.github.io/SmartGaze/video/demo-cover.jpg)](https://tianyuan-huang.github.io/SmartGaze/video/)
 
-[Watch the English demo](https://tianyuan-huang.github.io/SmartGaze/video/) · 4:41 · 1080p, 30 fps
+[Watch Demo](https://tianyuan-huang.github.io/SmartGaze/video/)
 
 ## Code
 
