@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Watch the SmartGaze demonstration: personalized proactive visual assistance for blind and low-vision users.">
+  <meta property="og:title" content="SmartGaze — Demo">
+  <meta property="og:description" content="Personalized proactive visual assistance. Watch the English demonstration in 1080p.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tianyuan-huang.github.io/SmartGaze/video/">
+  <meta property="og:image" content="https://tianyuan-huang.github.io/SmartGaze/video/demo-cover.jpg">
+  <meta name="theme-color" content="#10171b">
+  <link rel="canonical" href="https://tianyuan-huang.github.io/SmartGaze/video/">
+  <title>SmartGaze — Demo</title>
+  <style>
+    :root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:#10171b;color:#edf1f1}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
+    main{width:min(1120px,100%)}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:16px}
+    h1{font-size:24px;letter-spacing:.02em;margin:0}header p{font-size:14px;color:#aebfc4;margin:0}
+    .player{position:relative;overflow:hidden;border-radius:14px;background:#000;box-shadow:0 20px 80px #0005;aspect-ratio:16/9}
+    video{width:100%;height:100%;display:block;object-fit:contain}
+    .overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#0001}.overlay[hidden]{display:none}
+    button{display:flex;align-items:center;gap:12px;border:1px solid #ffffff66;border-radius:100px;background:#13222ee8;color:white;padding:18px 26px;font:600 17px Arial;cursor:pointer;backdrop-filter:blur(8px)}
+    button:hover{background:#203b4c}button:focus-visible{outline:3px solid #c5f56a;outline-offset:5px}button svg{width:18px;height:20px;fill:currentColor}
+    #status{font-size:14px;min-height:20px;color:#b5c7cd;text-align:center;margin:16px 0 0}
+    @media(max-width:600px){body{padding:14px}header{align-items:flex-start;flex-direction:column;gap:8px}h1{font-size:21px}.player{border-radius:8px}button{font-size:16px;padding:14px 20px}}
+  </style>
+</head>
+<body>
+  <main>
+    <header><h1>SmartGaze</h1><p>English demo · 4:41 · 1080p</p></header>
+    <div class="player">
+      <video id="video" controls playsinline preload="metadata" poster="demo-cover.jpg" aria-label="SmartGaze English demonstration video">
+        <source src="SmartGaze_Demo_en.mp4" type="video/mp4">
+        <a href="SmartGaze_Demo_en.mp4">Download the English demo video</a>
+      </video>
+      <div class="overlay" id="overlay" hidden><button id="play" type="button"><svg aria-hidden="true" viewBox="0 0 18 20"><path d="M1 1 L17 10 L1 19 Z"/></svg>Play video</button></div>
+    </div>
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+  <script>
+    const video=document.querySelector('#video');
+    const overlay=document.querySelector('#overlay');
+    const status=document.querySelector('#status');
+    video.controls=false;
+    overlay.hidden=false;
+    document.querySelector('#play').addEventListener('click',async()=>{
+      status.textContent='';video.controls=true;overlay.hidden=true;
+      try{await video.play();}catch{status.textContent='Press play in the video controls to start.';}
+    });
+    video.addEventListener('error',()=>{status.textContent='The video could not load. Please refresh and try again.';video.controls=true;overlay.hidden=true;});
+  </script>
+</body>
+</html>
