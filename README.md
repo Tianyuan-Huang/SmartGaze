@@ -6,6 +6,12 @@ Tianyuan Huang, Zhi Yu, Xiaozhong Liu · **AAAI-27 Demonstration Program**
 
 SmartGaze personalizes proactive visual assistance through PRISM, a scene-conditioned skill graph. Pairwise feedback learns information preferences, scoped corrections adapt them to particular scenes, and temporary goals guide assistance for the task at hand. The application supports English and Chinese.
 
+## Demo
+
+[![Watch the SmartGaze demo](https://tianyuan-huang.github.io/SmartGaze/video/demo-cover.jpg)](https://tianyuan-huang.github.io/SmartGaze/video/)
+
+[Watch the English demo](https://tianyuan-huang.github.io/SmartGaze/video/) · 4:41 · 1080p, 30 fps
+
 ## Code
 
 - [prism/](prism/) — scene–skill graph, Bayesian preference learning and calibration questions.
